@@ -1,0 +1,770 @@
+/* ════════════════════════════════
+   RESET
+   ════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100%;
+}
+
+/* ════════════════════════════════
+   PAGE
+   ════════════════════════════════ */
+.ep-page {
+  padding: 32px 40px;
+  min-height: unset;  /* ← 100vh'i kaldır */
+  background: #F6F8FA;
+  font-family: 'Inter', 'Inter var', -apple-system, BlinkMacSystemFont, sans-serif;
+  position: relative;
+  overflow: visible;
+  transition: background 0.25s;
+}
+.ep-page:first-child { margin-top: 0; }
+
+/* Background decorative blobs */
+.ep-bg-blob {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.ep-bg-blob--tr {
+  top: 0; right: 0;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(79,70,229,0.04), transparent 70%);
+}
+.ep-bg-blob--bl {
+  bottom: 0; left: 0;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(21,128,61,0.04), transparent 70%);
+}
+
+.ep-page > *:not(.ep-bg-blob) { position: relative; z-index: 1; }
+
+/* ════════════════════════════════
+   HEADER
+   ════════════════════════════════ */
+.ep-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #F3F4F6;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  margin-top: 0;
+  padding-top: 0;
+  transition: border-color 0.25s;
+}
+
+.ep-header__overline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ep-header__live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22C55E;
+  flex-shrink: 0;
+}
+
+.ep-header__title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.8px;
+  margin: 0;
+  line-height: 1;
+  transition: color 0.25s;
+}
+
+.ep-header__right {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.ep-header__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.ep-header__meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.ep-header__meta-label { font-size: 10px; color: #9CA3AF; }
+
+.ep-header__meta-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s;
+}
+
+.ep-header__meta-value--accent { color: #4F46E5; font-weight: 700; }
+
+.ep-header__refresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  background: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 150ms, color 150ms, background 0.25s;
+  font-family: 'Inter', sans-serif;
+}
+
+.ep-header__refresh:hover { border-color: #4F46E5; color: #4F46E5; }
+
+/* ════════════════════════════════
+   P&L CALCULATOR
+   ════════════════════════════════ */
+.ep-calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #F0F4FF 0%, #F8FAFF 60%, #F0FFF8 100%);
+  border: 1px solid #E0E7FF;
+  border-radius: 16px;
+  padding: 0;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 24px rgba(79, 70, 229, 0.06);
+  overflow: hidden;
+  position: relative;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.ep-calc__left {
+  padding: 24px 28px;
+  border-right: 1px solid rgba(224, 231, 255, 0.8);
+  transition: border-color 0.25s;
+}
+
+.ep-calc__eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #4F46E5;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.ep-calc__sub { font-size: 12px; color: #6B7280; margin: 0 0 18px; transition: color 0.25s; }
+
+.ep-calc__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ep-field label {
+  display: block;
+  font-size: 9px;
+  font-weight: 600;
+  color: #9CA3AF;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ep-field select,
+.ep-field input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 150ms, box-shadow 150ms, background 0.25s, color 0.25s;
+}
+
+.ep-field select:focus,
+.ep-field input:focus {
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+.ep-calc__actions { display: flex; gap: 8px; margin-bottom: 12px; }
+
+.ep-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 150ms;
+  white-space: nowrap;
+}
+
+.ep-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ep-btn--primary {
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  flex: 1;
+}
+
+.ep-btn--primary:not(:disabled):hover { background: #1f2937; }
+
+.ep-btn--outline {
+  background: #ffffff;
+  color: #6B7280;
+  border: 1px solid #E5E7EB;
+}
+
+.ep-btn--outline:not(:disabled):hover { border-color: #374151; color: #374151; }
+
+.ep-calc__entry-note {
+  font-size: 11px;
+  color: #9CA3AF;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255,255,255,0.7);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 0;
+  transition: background 0.25s, color 0.25s;
+}
+
+.ep-calc__right {
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  position: relative;
+}
+
+.ep-calc__stat { flex: 1; }
+
+.ep-calc__stat-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.ep-calc__stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 3px;
+  line-height: 1;
+  transition: color 0.25s;
+}
+
+.ep-calc__stat-sub { font-size: 11px; color: #9CA3AF; margin: 0; }
+
+.ep-calc__pnl-value {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 3px;
+  line-height: 1;
+  display: block;
+}
+
+.ep-calc__pnl-value--up   { color: #15803D; }
+.ep-calc__pnl-value--down { color: #B91C1C; }
+
+.ep-calc__pnl-row { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; }
+
+.ep-calc__pnl-pct { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ep-calc__pnl-pct--up   { color: #15803D; }
+.ep-calc__pnl-pct--down { color: #B91C1C; }
+
+.ep-calc__pnl-arrow { font-size: 13px; font-weight: 700; }
+.ep-calc__pnl-arrow--up   { color: #15803D; }
+.ep-calc__pnl-arrow--down { color: #B91C1C; }
+
+.ep-calc__pnl-sub { font-size: 10px; color: #9CA3AF; font-variant-numeric: tabular-nums; margin: 0; }
+
+.ep-calc__hint { font-size: 12px; color: #9CA3AF; font-style: italic; margin: 0; }
+
+.ep-calc__sparkline { flex-shrink: 0; width: 120px; height: 48px; opacity: 0.8; }
+
+/* ════════════════════════════════
+   SECTION HEADER
+   ════════════════════════════════ */
+.ep-section { margin-bottom: 28px; }
+
+.ep-section__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ep-section__title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  white-space: nowrap;
+  transition: color 0.25s;
+}
+
+.ep-section__line { flex: 1; height: 1px; background: #F3F4F6; transition: background 0.25s; }
+
+/* ════════════════════════════════
+   BOTTOM GRID
+   ════════════════════════════════ */
+.ep-bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* ════════════════════════════════
+   CARD GRID
+   ════════════════════════════════ */
+.ep-grid { display: grid; gap: 12px; }
+.ep-grid--1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.ep-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ep-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ep-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ════════════════════════════════
+   CURRENCY CARD
+   ════════════════════════════════ */
+.ep-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform 150ms ease, box-shadow 150ms ease, background 0.25s, border-color 0.25s;
+  cursor: default;
+}
+
+.ep-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.ep-card--fav { border: 1px solid #FDE68A; background: #FFFDF7; }
+
+.ep-card__head { display: flex; align-items: center; gap: 10px; }
+
+.ep-card__badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #F9FAFB;
+  border: 1px solid #F3F4F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.ep-card__meta { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+
+.ep-card__code { font-size: 14px; font-weight: 700; color: #111827; line-height: 1.2; transition: color 0.25s; }
+
+.ep-card__name {
+  font-size: 11px;
+  color: #9CA3AF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ep-card__star {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #D1D5DB;
+  line-height: 1;
+  transition: color 120ms, transform 120ms;
+  flex-shrink: 0;
+}
+
+.ep-card__star:hover { transform: scale(1.2); color: #F59E0B; }
+.ep-card__star--active { color: #F59E0B; }
+
+.ep-card__rate-row { display: flex; align-items: center; justify-content: space-between; }
+
+.ep-card__rate { display: flex; align-items: baseline; gap: 5px; }
+
+.ep-card__value {
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition: color 0.25s;
+}
+
+.ep-card__unit { font-size: 12px; font-weight: 500; color: #9CA3AF; }
+
+.ep-card__updated { font-size: 10px; color: #D1D5DB; margin: -4px 0 0; }
+
+.ep-card__foot { display: flex; align-items: center; justify-content: space-between; }
+
+.ep-card__base { font-size: 10px; color: #9CA3AF; font-variant-numeric: tabular-nums; }
+
+/* ════════════════════════════════
+   METAL CARDS (light mode)
+   ════════════════════════════════ */
+.ep-card--gold {
+  box-shadow: 0 2px 12px rgba(245,158,11,0.10), 0 1px 3px rgba(0,0,0,0.04);
+}
+.ep-card--gold .ep-card__badge {
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  color: #B45309;
+}
+.ep-card--gold .ep-card__code { color: #92400E; }
+.ep-card--gold .ep-card__value { color: #78350F; }
+
+.ep-card--silver .ep-card__badge {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+}
+.ep-card--silver .ep-card__code { color: #334155; }
+.ep-card--silver .ep-card__value { color: #1E293B; }
+
+
+.ep-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.25s, color 0.25s;
+}
+
+.ep-trend__icon { font-size: 10px; }
+
+.ep-trend__dot { width: 5px; height: 5px; border-radius: 50%; background: #6B7280; }
+
+.ep-trend--up   { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
+.ep-trend--down { background: #FFF1F2; color: #B91C1C; border: 1px solid #FECDD3; }
+.ep-trend--flat { background: #F4F4F5; color: #6B7280; border: 1px solid #E4E4E7; }
+
+/* ════════════════════════════════
+   STATUS MESSAGES
+   ════════════════════════════════ */
+.ep-info  { font-size: 12px; color: #6B7280; margin: 0 0 10px; }
+.ep-error { font-size: 12px; color: #B91C1C; margin: 0 0 10px; }
+
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
+@media (max-width: 1100px) {
+  .ep-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ep-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .ep-bottom-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .ep-calc { grid-template-columns: 1fr; }
+  .ep-calc__left { border-right: none; border-bottom: 1px solid rgba(224, 231, 255, 0.8); }
+}
+
+@media (max-width: 600px) {
+  .ep-page { padding: 20px 16px; }
+  .ep-grid--2,
+  .ep-grid--3,
+  .ep-grid--4 { grid-template-columns: 1fr; }
+  .ep-header__title { font-size: 22px; }
+}
+
+
+/* ════════════════════════════════════════════════
+   ██████████  DARK MODE  ██████████
+   body.theme-dark — SettingsPage toggle tarafından
+   yönetilir, JSX dosyalarına dokunmak gerekmez.
+   ════════════════════════════════════════════════ */
+
+/* ── Page background ── */
+body.theme-dark .ep-page {
+  background: #0F1117;
+}
+
+body.theme-dark .ep-bg-blob--tr {
+  background: radial-gradient(circle, rgba(99,102,241,0.07), transparent 70%);
+}
+
+body.theme-dark .ep-bg-blob--bl {
+  background: radial-gradient(circle, rgba(16,185,129,0.05), transparent 70%);
+}
+
+/* ── Header ── */
+body.theme-dark .ep-header {
+  border-bottom-color: #1E2130;
+}
+
+body.theme-dark .ep-header__title { color: #F1F5F9; }
+
+body.theme-dark .ep-header__meta-label { color: #6B7280; }
+
+body.theme-dark .ep-header__meta-value { color: #CBD5E1; }
+
+body.theme-dark .ep-header__meta-value--accent { color: #818CF8; }
+
+body.theme-dark .ep-header__refresh {
+  background: #1A1E2E;
+  border-color: #2A2F45;
+  color: #94A3B8;
+}
+
+body.theme-dark .ep-header__refresh:hover {
+  border-color: #6366F1;
+  color: #818CF8;
+}
+
+body.theme-dark .ep-header__overline { color: #4B5563; }
+
+/* ── P&L Calculator ── */
+body.theme-dark .ep-calc {
+  background: linear-gradient(135deg, #141829 0%, #111420 60%, #111D1A 100%);
+  border-color: #1E2640;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+}
+
+body.theme-dark .ep-calc__left {
+  border-right-color: #1E2640;
+}
+
+body.theme-dark .ep-calc__eyebrow { color: #818CF8; }
+
+body.theme-dark .ep-calc__sub { color: #6B7280; }
+
+body.theme-dark .ep-field label { color: #6B7280; }
+
+body.theme-dark .ep-field select,
+body.theme-dark .ep-field input {
+  background: #1A1E2E;
+  border-color: #2A2F45;
+  color: #E2E8F0;
+}
+
+body.theme-dark .ep-field select:focus,
+body.theme-dark .ep-field input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+body.theme-dark .ep-btn--primary {
+  background: #6366F1;
+  color: #fff;
+}
+
+body.theme-dark .ep-btn--primary:not(:disabled):hover {
+  background: #4F46E5;
+}
+
+body.theme-dark .ep-btn--outline {
+  background: #1A1E2E;
+  border-color: #2A2F45;
+  color: #94A3B8;
+}
+
+body.theme-dark .ep-btn--outline:not(:disabled):hover {
+  border-color: #94A3B8;
+  color: #E2E8F0;
+}
+
+body.theme-dark .ep-calc__entry-note {
+  background: rgba(255,255,255,0.04);
+  color: #6B7280;
+}
+
+body.theme-dark .ep-calc__stat-label { color: #6B7280; }
+
+body.theme-dark .ep-calc__stat-value { color: #F1F5F9; }
+
+body.theme-dark .ep-calc__stat-sub { color: #6B7280; }
+
+body.theme-dark .ep-calc__hint { color: #4B5563; }
+
+/* ── Section headers ── */
+body.theme-dark .ep-section__title { color: #4B5563; }
+
+body.theme-dark .ep-section__line { background: #1E2130; }
+
+/* ── Currency Cards ── */
+body.theme-dark .ep-card {
+  background: #161B2C;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3), 0 1px 4px rgba(0,0,0,0.2);
+  border: 1px solid #1E2438;
+}
+
+body.theme-dark .ep-card:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.25);
+  border-color: #2A3050;
+}
+
+/* Favorites card dark */
+body.theme-dark .ep-card--fav {
+  background: #1A1A10;
+  border-color: #78350F44;
+}
+
+body.theme-dark .ep-card__badge {
+  background: #1E2438;
+  border-color: #252C42;
+  color: #94A3B8;
+}
+
+body.theme-dark .ep-card__code { color: #E2E8F0; }
+
+body.theme-dark .ep-card__name { color: #4B5563; }
+
+body.theme-dark .ep-card__star { color: #2D3748; }
+
+body.theme-dark .ep-card__star:hover { color: #F59E0B; }
+
+body.theme-dark .ep-card__value { color: #F1F5F9; }
+
+body.theme-dark .ep-card__unit { color: #4B5563; }
+
+body.theme-dark .ep-card__updated { color: #2D3748; }
+
+body.theme-dark .ep-card__base { color: #4B5563; }
+
+/* ── Trend badges ── */
+body.theme-dark .ep-trend--up {
+  background: rgba(21,128,61,0.15);
+  color: #4ADE80;
+  border-color: rgba(74,222,128,0.2);
+}
+
+body.theme-dark .ep-trend--down {
+  background: rgba(185,28,28,0.15);
+  color: #F87171;
+  border-color: rgba(248,113,113,0.2);
+}
+
+body.theme-dark .ep-trend--flat {
+  background: rgba(107,114,128,0.15);
+  color: #6B7280;
+  border-color: rgba(107,114,128,0.2);
+}
+
+/* ── Gold / Silver inline styles override ──
+   JSX'te style prop ile verilmiş renkleri CSS custom properties ile geçersiz kılıyoruz.
+   data-metal="gold" ve data-metal="silver" attribute'ları JSX'e eklenmeli, 
+   ama biz burada !important ile inline'ı ezip dark mode'a uygun renk veriyoruz. */
+
+/* GOLD card dark overrides */
+body.theme-dark .ep-card--gold {
+  box-shadow: 0 2px 16px rgba(245,158,11,0.12) !important;
+}
+body.theme-dark .ep-card--gold .ep-card__badge {
+  background: rgba(245,158,11,0.15) !important;
+  border-color: rgba(245,158,11,0.3) !important;
+  color: #FCD34D !important;
+}
+body.theme-dark .ep-card--gold .ep-card__code {
+  color: #FCD34D !important;
+}
+body.theme-dark .ep-card--gold .ep-card__value {
+  color: #F59E0B !important;
+}
+
+/* SILVER card dark overrides */
+body.theme-dark .ep-card--silver .ep-card__badge {
+  background: rgba(148,163,184,0.15) !important;
+  border-color: rgba(148,163,184,0.3) !important;
+  color: #CBD5E1 !important;
+}
+body.theme-dark .ep-card--silver .ep-card__code {
+  color: #CBD5E1 !important;
+}
+body.theme-dark .ep-card--silver .ep-card__value {
+  color: #94A3B8 !important;
+}
+
+/* Genel inline style'ları ezmek için — badge üzerindeki tüm renk override'ları */
+body.theme-dark .ep-card__badge[style] {
+  filter: none;
+  background: #1E2438 !important;
+  border-color: #252C42 !important;
+  color: #94A3B8 !important;
+}
+/* Altın ve gümüş badge'leri bu genel kuraldan hariç tut */
+body.theme-dark .ep-card--gold .ep-card__badge[style],
+body.theme-dark .ep-card--gold .ep-card__badge {
+  background: rgba(245,158,11,0.15) !important;
+  border-color: rgba(245,158,11,0.3) !important;
+  color: #FCD34D !important;
+}
+body.theme-dark .ep-card--silver .ep-card__badge[style],
+body.theme-dark .ep-card--silver .ep-card__badge {
+  background: rgba(148,163,184,0.12) !important;
+  border-color: rgba(148,163,184,0.25) !important;
+  color: #94A3B8 !important;
+}
+
+body.theme-dark .ep-calc__pnl-value--up   { color: #4ADE80; }
+body.theme-dark .ep-calc__pnl-value--down { color: #F87171; }
+
+body.theme-dark .ep-calc__pnl-pct--up   { color: #4ADE80; }
+body.theme-dark .ep-calc__pnl-pct--down { color: #F87171; }
+
+body.theme-dark .ep-calc__pnl-arrow--up   { color: #4ADE80; }
+body.theme-dark .ep-calc__pnl-arrow--down { color: #F87171; }
+
+/* ── Status messages ── */
+body.theme-dark .ep-info  { color: #4B5563; }
+body.theme-dark .ep-error { color: #F87171; }
+
+
