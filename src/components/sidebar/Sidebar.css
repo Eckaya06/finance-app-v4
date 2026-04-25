@@ -1,25 +1,25 @@
 /* src/components/sidebar/Sidebar.css */
 
 .sidebar {
-  background-color: #1e293b; /* Tasarımdaki koyu renk */
-  color: #e2e8f0; /* Açık renk metin */
-  height: 100vh; /* Ekranın tüm yüksekliğini kapla */
+  background-color: #1e293b;
+  color: #e2e8f0;
+  height: 100vh;
   display: flex;
-  flex-direction: column; /* İçerikleri alt alta sırala */
+  flex-direction: column;
   padding: 1.5rem;
-  box-sizing: border-box; /* Padding'i yüksekliğe dahil et */
-  border-bottom-right-radius: 12px; /* Köşe yuvarlatma ekleyebiliriz */
-  border-top-right-radius: 16px; /* Köşe yuvarlatma ekleyebiliriz */
-  transition: padding 0.3s ease-in-out; /* Daralma animasyonu için */
+  box-sizing: border-box;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 16px;
+  transition: padding 0.3s ease-in-out;
 }
 
 .sidebar-logo {
-  margin-bottom: 2rem; /* Logoyla menü arasını biraz daha açalım */
-  width: 120px; /* Logo için özel ayarlar */
+  margin-bottom: 2rem;
+  width: 120px;
   height: auto;
   margin-top: 10px;
   margin-left: 10px;
-  transition: opacity 0.3s ease-in-out, margin-left 0.3s ease-in-out; /* Yumuşak geçiş */
+  transition: opacity 0.3s ease-in-out, margin-left 0.3s ease-in-out;
 }
 
 .logo-text {
@@ -27,21 +27,48 @@
   font-size: 1.8rem;
   font-weight: 700;
   color: white;
-  transition: font-size 0.3s ease-in-out; /* Yumuşak geçiş */
+  transition: font-size 0.3s ease-in-out;
 }
 
 .sidebar-nav {
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .nav-list {
-  list-style: none; /* Madde işaretlerini kaldır */
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* --- Grup Yapısı --- */
+
+.nav-group {
+  margin-bottom: 0.25rem;
+}
+
+/* Grup başlığı etiketi */
+.nav-group-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 0.85rem 1rem 0.4rem 1rem;
+  user-select: none;
+}
+
+/* Collapsed halde ince çizgi ayraç */
+.nav-group-divider {
+  height: 1px;
+  background-color: #334155;
+  margin: 0.6rem 0.5rem;
+}
+
+/* --- Nav Items --- */
+
 .nav-item {
-  margin-bottom: 0.5rem; /* Her menü elemanı arasına boşluk */
+  margin-bottom: 0.25rem;
 }
 
 .nav-item a {
@@ -50,50 +77,93 @@
   padding: 0.9rem 1rem;
   border-radius: 8px;
   text-decoration: none;
-  color: #cbd5e1; /* Pasif link rengi */
+  color: #cbd5e1;
   font-weight: 500;
-  transition: background-color 0.2s, color 0.2s, padding 0.3s ease-in-out; /* Yumuşak geçiş */
+  transition: background-color 0.2s, color 0.2s, padding 0.3s ease-in-out;
 }
 
 .nav-item a:hover {
-  background-color: #334155; /* Hafif vurgu rengi */
-  color: white; /* Hover durumunda metin rengini beyaz yapalım */
+  background-color: #334155;
+  color: white;
 }
 
 .nav-item a.active {
-  background-color: white; /* Tasarımdaki gibi beyaz arka plan */
-  color: #1e293b; /* Koyu metin rengi */
+  background-color: white;
+  color: #1e293b;
   font-weight: 600;
 }
 
 .nav-item a.active .nav-icon {
-  color: #277C78; /* Aktif ikon rengi */
+  color: #277C78;
 }
 
 .nav-icon {
   margin-right: 1rem;
   display: flex;
   align-items: center;
-  line-height: 0; 
-  color: #94a3b8; /* Varsayılan ikon rengi */
-  transition: color 0.2s, margin 0.3s ease-in-out; /* Yumuşak geçiş */
+  line-height: 0;
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: color 0.2s, margin 0.3s ease-in-out;
 }
 
 .nav-item a:hover .nav-icon {
   color: white;
 }
 
-/* Aktif linkin ikon rengi */
 .nav-item a.active .nav-icon {
-  color: #277C78; 
+  color: #277C78;
 }
 
 .nav-text {
-  white-space: nowrap; /* Asla alt satıra kayma */
-  overflow: hidden; /* Taşarsa gizle (gerçi opacity ile gizleyeceğiz ama yine de iyi bir önlem) */
-  opacity: 1; /* Başlangıçta görünür */
-  transition: opacity 0.2s ease-in-out; /* Şeffaflık için animasyon (genişlik animasyonundan biraz daha hızlı) */
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
 }
+
+/* --- Badge (sayı) --- */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: #277C78;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Aktif link üzerindeyken badge rengi koyu olsun */
+.nav-item a.active .nav-badge {
+  background-color: #277C78;
+  color: white;
+}
+
+/* Collapsed halde küçük nokta */
+.nav-badge-dot {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #277C78;
+  border: 2px solid #1e293b;
+}
+
+/* Collapsed halde nav-item'ın position'ı relative olmalı ki dot konumlanabilsin */
+.sidebar.collapsed .nav-item {
+  position: relative;
+}
+
+/* --- Footer --- */
 
 .sidebar-footer {
   margin-top: 1.5rem;
@@ -108,40 +178,41 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  display: flex; /* İkon ve metni yan yana getirmek için */
-  align-items: center; /* Dikeyde ortala */
-  justify-content: flex-start; /* İçeriği sola yasla */
-  gap: 0.75rem; /* İkon ile metin arası boşluk */
-  transition: padding 0.3s ease-in-out, justify-content 0.3s ease-in-out; /* Yumuşak geçiş */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  transition: padding 0.3s ease-in-out, justify-content 0.3s ease-in-out;
 }
 
 .minimize-btn:hover {
   background-color: #334155;
 }
 
-
-/* --- Collapsed State Styles --- */
+/* --- Collapsed State --- */
 
 .sidebar.collapsed {
-  padding: 1.5rem 0.75rem; /* Yan padding'leri azalt */
-  /* align-items: center; <-- BU SATIRI KALDIRDIK */
+  padding: 1.5rem 0.75rem;
 }
 
-/* Logoyu tamamen gizle */
 .sidebar.collapsed .sidebar-logo {
   display: none;
 }
 
 .sidebar.collapsed .nav-item a {
-  /* justify-content: center; <-- BU SATIRI KALDIRDIK */
-  padding: 0.8rem; /* Padding'i küçült */
-  display: inline-flex; /* Sadece ikon kadar yer kaplasın */
+  padding: 0.8rem;
+  display: inline-flex;
   width: auto;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .sidebar.collapsed .nav-icon {
-  margin-right: 0; /* İkonun sağındaki boşluğu kaldır */
+  margin-right: 0;
+}
+
+.sidebar.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar.collapsed .sidebar-footer {
@@ -151,15 +222,15 @@
 }
 
 .sidebar.collapsed .minimize-btn {
-  justify-content: center; /* Küçülünce ikonu ortala */
+  justify-content: center;
   padding: 0.75rem;
-  display: inline-flex; /* Buton içeriği kadar yer kaplasın */
-  width: auto; /* Otomatik genişlik */
-  gap: 0; /* Boşluğu kaldır */
+  display: inline-flex;
+  width: auto;
+  gap: 0;
 }
 
 .sidebar.collapsed .minimize-btn span {
-  display: none; /* Metni gizle */
+  display: none;
 }
 
 .minimize-btn span {
@@ -168,14 +239,8 @@
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
 }
-.sidebar.collapsed .nav-text {
-  opacity: 0;
-  /* İsteğe Bağlı: Tamamen kaybolunca tıklanmasını da engelle */
-  pointer-events: none; 
-}
 
-.sidebar.collapsed .minimize-btn span {
-  opacity: 0;
-  display: none; /* display: none'ı hala tutabiliriz, opacity animasyonu bittikten sonra yer kaplamasın diye */
+/* Collapsed halde grup etiketleri gizlenir (divider gösterilir) */
+.sidebar.collapsed .nav-group-label {
+  display: none;
 }
-

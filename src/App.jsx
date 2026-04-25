@@ -11,6 +11,7 @@ import IncomeExpensePage from './pages/income-expense/IncomeExpensePage.jsx';
 import BudgetsPage from './pages/budgets/BudgetsPage.jsx';
 import SettingsPage from './pages/settings/SettingsPage.jsx';
 import AnalyticsPage from './pages/analytics/AnalyticsPage.jsx';
+import ExchangePage from "./pages/Exchange/ExchangePage.jsx";
 
 // UI Bileşenleri
 import AiChatSystem from './components/chatbot/AiChatSystem.jsx';
@@ -49,6 +50,8 @@ const App = () => {
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/pots" element={<PotsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/exchange" element={<ExchangePage />} />
+                
               </Route>
             </Routes>
             <AssistantWrapper />
