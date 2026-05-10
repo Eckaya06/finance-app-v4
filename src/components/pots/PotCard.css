@@ -60,7 +60,7 @@
   bottom: -10px; /* Dikey konumu koruyalım (veya tekrar ayarla) */
   
   /* DEĞİŞİKLİK: Menüyü hafifçe sağa itmek için küçük bir negatif değer dene */
-  right: -24px; /* Bu değeri -4px, -12px gibi değiştirerek en iyi hizayı bulabilirsin */
+  right: -40px; /* Bu değeri -4px, -12px gibi değiştirerek en iyi hizayı bulabilirsin */
   
   background-color: white;
   border-radius: 8px;
@@ -100,3 +100,45 @@
 
 
 
+
+/* ════════════════════════════════
+   DARK MODE
+════════════════════════════════ */
+body.theme-dark .pot-card {
+  background: #141820;
+  border-color: #1E2330;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+body.theme-dark .pot-card-header h3 { color: #F0F2FF; }
+
+body.theme-dark .amount-label { color: #4B5563; }
+body.theme-dark .amount-saved { color: #F0F2FF; }
+
+body.theme-dark .progress-bar { background: #1E2438; }
+
+body.theme-dark .pot-target { color: #4B5563; }
+
+body.theme-dark .btn-secondary {
+  background: #1A1E28;
+  border-color: #252B3A;
+  color: #E5E7EB;
+}
+body.theme-dark .btn-secondary:hover {
+  background: #252B3A;
+}
+
+body.theme-dark .pot-options-btn { color: #4B5563; }
+body.theme-dark .pot-options-btn:hover { color: #E5E7EB; }
+
+body.theme-dark .pot-options-menu {
+  background: #1A1E28;
+  border-color: #252B3A;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+body.theme-dark .pot-options-menu button { color: #E5E7EB; }
+body.theme-dark .pot-options-menu button:hover { background: #252B3A; }
+body.theme-dark .pot-options-menu button.delete { color: #F87171; }
+body.theme-dark .pot-options-menu button.delete:hover { background: rgba(239,68,68,0.12); }
+
+body.theme-dark .pot-action-error { color: #F87171; }

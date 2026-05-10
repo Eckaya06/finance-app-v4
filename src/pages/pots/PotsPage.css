@@ -1,311 +1,137 @@
-/* src/pages/pots/PotsPage.css */
+/* ═══════════════════════════════════════
+   PotsPage.css  — pp- prefix
+   Diğer sayfalarla (Budgets, Analytics) uyumlu
+═══════════════════════════════════════ */
 
-.page-container { 
-  padding: 2.5rem; 
+.pp-page {
+  padding: 32px 40px;
+  background: #F6F8FA;
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 350ms ease, transform 350ms ease;
 }
+.pp-page--ready { opacity: 1; transform: translateY(0); }
 
-.page-header {
+/* ── Header ── */
+.pp-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EAECF0;
+}
+.pp-breadcrumb {
+  font-size: 20px; font-weight: 700; color: #111827;
+  margin: 0 0 4px; letter-spacing: -0.4px;
+}
+.pp-breadcrumb__sep { color: #D1D5DB; margin: 0 6px; font-weight: 300; }
+.pp-header__sub { font-size: 12px; color: #9CA3AF; margin: 0; }
+
+.pp-add-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 22px; font-size: 13px; font-weight: 600;
+  font-family: inherit; color: #fff; background: #111827;
+  border: none; border-radius: 999px; cursor: pointer;
+  transition: background 150ms, transform 150ms;
+}
+.pp-add-btn:hover { background: #1f2937; transform: translateY(-1px); }
+
+/* ── KPI Row ── */
+.pp-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.pp-kpi {
+  background: #fff; border: 1px solid #E9EDF3;
+  border-radius: 18px; padding: 22px 24px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  animation: pp-slidein 400ms ease both;
+  transition: box-shadow 200ms, transform 200ms;
+}
+.pp-kpi:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+@keyframes pp-slidein {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.pp-kpi__top { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.pp-kpi__icon { font-size: 14px; color: #9CA3AF; }
+.pp-kpi__label {
+  font-size: 10px; font-weight: 600; color: #9CA3AF;
+  text-transform: uppercase; letter-spacing: 0.1em; margin: 0;
+}
+.pp-kpi__value {
+  font-size: 26px; font-weight: 800; color: #111827;
+  margin: 0 0 6px; letter-spacing: -0.8px; line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.pp-kpi__sub { font-size: 11px; font-weight: 500; margin: 0; color: #6B7280; }
+
+/* ── Overall progress ── */
+.pp-overall {
+  background: #fff; border: 1px solid #E9EDF3;
+  border-radius: 14px; padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.pp-overall__bar {
+  height: 10px; background: #F3F4F6;
+  border-radius: 999px; overflow: hidden; margin-bottom: 8px;
+}
+.pp-overall__fill {
+  height: 100%; background: #10B981; border-radius: 999px;
+  transition: width 600ms cubic-bezier(0.4,0,0.2,1);
+}
+.pp-overall__labels {
+  display: flex; justify-content: space-between;
+  font-size: 11px; font-weight: 600; color: #9CA3AF;
 }
 
-.page-title {
-  margin: 0;
-  font-size: 2.25rem;
-  font-weight: 700;
-}
-
-.btn-primary {
-  background-color: #1e293b;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-primary:hover {
-  background-color: #334155;
-}
-
-.pots-grid {
+/* ── Pot grid ── */
+.pp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 16px;
 }
 
-
-
-/* Modal içindeki formun stilleri */
-.add-pot-form h2 { margin-top: 0; }
-.add-pot-form p { color: #64748b; margin-bottom: 2rem; }
-.add-pot-form .form-group { display: flex; flex-direction: column; margin-bottom: 1.5rem; }
-.add-pot-form label { margin-bottom: 0.5rem; font-weight: 500; }
-.add-pot-form input { 
-  padding: 0.75rem; 
-  border: 1px solid #e2e8f0; 
-  border-radius: 8px; 
-  font-size: 1rem;
-  background-color: white;
-  font-family: inherit;
-}
-.add-pot-form .form-submit-btn { width: 100%; padding: 0.9rem; margin-top: 1rem; }
-
-
-/* --- Custom Select Stilleri --- */
-.custom-select-container {
-  position: relative;
+/* ── Responsive ── */
+@media (max-width: 1100px) { .pp-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .pp-page { padding: 20px 16px; }
+  .pp-kpis { grid-template-columns: 1fr; }
 }
 
-.select-selected-value {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background-color: white;
-  font-size: 1rem;
-  font-family: inherit;
-  color: #334155;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
+/* ════════════════════════════════
+   DARK MODE
+════════════════════════════════ */
+body.theme-dark .pp-page    { background: #0B0E14; }
+body.theme-dark .pp-header  { border-bottom-color: #1E2330; }
+body.theme-dark .pp-breadcrumb { color: #F0F2FF; }
+body.theme-dark .pp-breadcrumb__sep { color: #2D3748; }
+body.theme-dark .pp-header__sub { color: #4B5563; }
+body.theme-dark .pp-add-btn { background: #6366F1; }
+body.theme-dark .pp-add-btn:hover { background: #4F46E5; }
+
+/* KPI kartları */
+body.theme-dark .pp-kpi {
+  background: #141820;
+  border-color: #1E2330;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
+body.theme-dark .pp-kpi:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.45); }
+body.theme-dark .pp-kpi__label { color: #4B5563; }
+body.theme-dark .pp-kpi__value { color: #F0F2FF; }
+body.theme-dark .pp-kpi__icon  { color: #4B5563; }
+body.theme-dark .pp-kpi__sub   { color: #4B5563; }
 
-.select-arrow {
-  transition: transform 0.2s ease-in-out;
+/* Overall progress bar */
+body.theme-dark .pp-overall {
+  background: #141820;
+  border-color: #1E2330;
 }
-.select-arrow.open {
-  transform: rotate(180deg);
-}
-
-.select-options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: white;
-  list-style: none;
-  padding: 0.5rem;
-  margin: 0.25rem 0 0 0;
-  z-index: 10;
-  border-radius: 12px;
-  border: none;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.select-option {
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  
-}
-
-.select-option:hover {
-  background-color: #f1f5f9;
-}
-
-.selected-label-text {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.theme-option-display {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.theme-color-swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* --- YENİ EKLENEN PLACEHOLDER STİLLERİ --- */
-
-/* Dropdown kapalıyken görünen placeholder metni için stil */
-.select-placeholder {
-  color: #9ca3af; /* Soluk gri renk */
-}
-
-/* Açılır listedeki seçilemeyen placeholder seçeneği için özel stil */
-.select-option.disabled {
-  color: #9ca3af;
-  cursor: default;
-  font-style: italic;
-}
-
-/* Disabled seçeneğin üzerine gelince hover efekti olmasın */
-.select-option.disabled:hover {
-  background-color: transparent;
-}
-
-
-/* src/pages/pots/PotsPage.css dosyasının en altına ekle */
-
-/* --- AddMoneyForm Stilleri --- */
-.add-money-form h2 { margin-top: 0; }
-.add-money-form p { color: #64748b; margin-bottom: 1.5rem; }
-.add-money-form .form-group { margin-top: 1.5rem; margin-bottom: 1.5rem; } /* Preview sonrası boşluk */
-/* Diğer form stilleri (.form-group label, input vb.) zaten mevcut */
-
-/* Önizleme Bölümü Stilleri */
-.preview-section {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1rem;
-  border: 1px solid #e2e8f0;
-}
-.preview-label { margin: 0 0 0.25rem 0; font-size: 0.85rem; color: #64748b; }
-.preview-amount { margin: 0 0 1rem 0; font-size: 1.75rem; font-weight: 600; }
-.preview-progress { margin-bottom: 0.5rem; height: 6px; } /* Progress barı biraz inceltelim */
-.preview-target { display: flex; justify-content: space-between; font-size: 0.8rem; color: #64748b; }
-
-/* Farklı temalar için progress bar dolgu rengi (PotCard.css'ten kopyalandı) */
-.preview-progress .theme-blue { background-color: #3b82f6; }
-.preview-progress .theme-cyan { background-color: #06b6d4; }
-.preview-progress .theme-green { background-color: #22c55e; }
-.preview-progress .theme-orange { background-color: #f97316; }
-.preview-progress .theme-indigo { background-color: #6366f1; }
-.preview-progress .theme-red { background-color: #ef4444; }
-.preview-progress .theme-purple { background-color: #8b5cf6; }
-
-/* Progress bar'ın kendisine ait stiller (PotCard.css'ten kopyalandı) */
-.progress-bar { width: 100%; height: 8px; background-color: #f1f5f9; border-radius: 4px; overflow: hidden; }
-.progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s ease-in-out; }
-
-
-.withdraw-money-form h2 { margin-top: 0; }
-.withdraw-money-form p { color: #64748b; margin-bottom: 1.5rem; }
-.withdraw-money-form .form-group { margin-top: 1.5rem; margin-bottom: 1.5rem; } /* Preview sonrası boşluk */
-/* Diğer form stilleri (.form-group label, input vb.) zaten mevcut */
-
-
-.withdraw-money-form .preview-section {
-  border-radius: 8px;
-  padding: 1rem;
-  border: 1px solid #e2e8f0;
-  background-color: white; /* Explicitly set to white */
-}
-
-.withdraw-money-form .preview-label { margin: 0 0 0.25rem 0; font-size: 0.85rem; color: #64748b; }
-
-
-.withdraw-money-form .preview-amount { margin: 0 0 1rem 0; font-size: 1.75rem; font-weight: 600; }
-
-.withdraw-money-form .preview-progress { margin-bottom: 0.5rem; height: 6px; }
-
-.withdraw-money-form .preview-target { display: flex; justify-content: space-between; font-size: 0.8rem; color: #64748b; }
-
-.withdraw-money-form .preview-progress .theme-blue { background-color: #3b82f6; }
-
-.withdraw-money-form .preview-progress .theme-cyan { background-color: #06b6d4; }
-.withdraw-money-form .preview-progress .theme-green { background-color: #22c55e; }
-.withdraw-money-form .preview-progress .theme-orange { background-color: #f97316; }
-.withdraw-money-form .preview-progress .theme-indigo { background-color: #6366f1; }
-.withdraw-money-form .preview-progress .theme-red { background-color: #ef4444; }
-.withdraw-money-form .preview-progress .theme-purple { background-color: #8b5cf6; }
-.withdraw-money-form .progress-bar { width: 100%; height: 8px; background-color: #f1f5f9; border-radius: 4px; overflow: hidden; }
-.withdraw-money-form .progress-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s ease-in-out; }
-
-
-/* src/pages/pots/PotsPage.css veya src/components/pots/PotCard.css */
-
-.pot-action-error {
-  color: #ef4444; /* Kırmızı renk */
-  font-size: 0.8rem;
-  text-align: right; /* Butonların altına hizalamak için */
-  margin-top: 0.5rem;
-  margin-bottom: 0; /* Ekstra boşluk olmasın */
-}
-
-
-/* src/pages/pots/PotsPage.css dosyasının en altına ekle */
-
-/* Hata mesajı stili */
-.form-error {
-  color: #ef4444; /* Kırmızı */
-  font-size: 0.8rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0;
-}
-
-/* Hata durumundaki input'un kenarlık rengi (isteğe bağlı) */
-.add-money-form .input-error,
-.withdraw-money-form .input-error {
-  border-color: #ef4444; 
-}
-
-/* Pasif buton stili */
-.add-money-form .form-submit-btn:disabled,
-.withdraw-money-form .form-submit-btn:disabled {
-  background-color: #9ca3af; /* Gri renk */
-  cursor: not-allowed; /* Tıklanamaz imleç */
-}
-.add-money-form .form-submit-btn:disabled:hover,
-.withdraw-money-form .form-submit-btn:disabled:hover {
-  background-color: #9ca3af; /* Hover efektini iptal et */
-}
-
-/* src/pages/pots/PotsPage.css dosyasının en altına ekle */
-
-/* --- Tarayıcı Otomatik Doldurma Stillerini Sıfırlama --- */
-
-/* Webkit tabanlı tarayıcılar (Chrome, Safari, Edge) için */
-.add-pot-form input:-webkit-autofill,
-.add-pot-form input:-webkit-autofill:hover, 
-.add-pot-form input:-webkit-autofill:focus, 
-.add-pot-form input:-webkit-autofill:active {
-    /* Yazı rengini normal input rengiyle aynı yap */
-    -webkit-text-fill-color: #334155; /* Veya input için kullandığın renk */
-    
-    /* Arka plan rengini kapatmak için 'box-shadow' hilesi */
-    box-shadow: 0 0 0 1000px white inset !important; 
-    
-    /* İsteğe bağlı: Geçiş efektini sıfırlama */
-    transition: background-color 5000s ease-in-out 0s; 
-}
-
-
-/* src/pages/pots/PotsPage.css veya Modal.css */
-
-.delete-confirmation h2 { margin-top: 0; }
-.delete-confirmation p { color: #64748b; margin-bottom: 1.5rem; }
-.confirmation-buttons { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; }
-
-/* Genel Buton Stilleri (varsa üzerine yazabilir) */
-.confirmation-buttons button {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-/* Tehlike Butonu (Kırmızı) */
-.btn-danger {
-  background-color: #ef4444;
-  color: white;
-  border: 1px solid #ef4444;
-}
-.btn-danger:hover { background-color: #dc2626; border-color: #dc2626;}
-
-/* İkincil Outline Butonu (İptal) */
-.btn-secondary-outline {
-  background-color: white;
-  color: #475569;
-  border: 1px solid #e2e8f0;
-}
-.btn-secondary-outline:hover { background-color: #f8fafc; border-color: #cbd5e1;}
-
-
+body.theme-dark .pp-overall__bar    { background: #1E2438; }
+body.theme-dark .pp-overall__labels { color: #4B5563; }

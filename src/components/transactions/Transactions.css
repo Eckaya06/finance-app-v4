@@ -76,3 +76,18 @@
 .transaction-amount.expense {
   color: #334155; /* Koyu Gri */
 }
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .transactions-container {
+  background-color: #141820;
+  border-color: #1E2330;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+body.theme-dark .transactions-header h2 { color: #F0F2FF; }
+body.theme-dark .view-all-link { color: #818CF8; }
+
+body.theme-dark .transaction-name { color: #E5E7EB; }
+body.theme-dark .transaction-date { color: #4B5A70; }
+
+body.theme-dark .transaction-amount.income  { color: #10B981; }
+body.theme-dark .transaction-amount.expense { color: #E5E7EB; }

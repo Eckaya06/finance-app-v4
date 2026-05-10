@@ -1,153 +1,401 @@
-/* src/pages/transactions/TransactionsPage.css */
+/* ═══════════════════════════════════════
+   TransactionsPage.css  — tx- prefix
+   Figma tasarımına uygun, dark mode destekli
+═══════════════════════════════════════ */
 
-/* --- Sayfa Düzeni ve Başlıklar --- */
-.page-container { 
-  padding: 2.5rem; 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Page ── */
+.tx-page {
+  padding: 32px 40px;
+  background: #F6F8FA;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.page-title { 
-  font-size: 2.25rem; 
-  font-weight: 700; 
-  color: #1e293b; 
-  margin: 0 0 1.5rem 0; 
+/* ── Header ── */
+.tx-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EAECF0;
 }
 
-/* --- Filtreleme Alanı --- */
-.filters-bar { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  margin-bottom: 2rem; 
+.tx-header__eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 6px;
 }
 
-.search-input { 
-  width: 300px; 
-  padding: 0.75rem 1rem; 
-  border: 1px solid #e2e8f0; 
-  border-radius: 8px; 
-  font-size: 0.9rem; 
+.tx-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1;
 }
 
-.dropdowns { 
-  display: flex; 
-  gap: 1rem; 
+/* ── Filters Bar ── */
+.tx-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-/* --- Tablo Yapısı --- */
-.transaction-table { 
-  background-color: white; 
-  border-radius: 12px; 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-  border: 1px solid #e2e8f0; 
+.tx-search-wrap {
+  flex: 1;
+  position: relative;
 }
 
-.table-header, .table-row { 
-  display: grid; 
-  grid-template-columns: 2fr 1fr 1fr 1fr; 
-  align-items: center; 
-  padding: 1rem 1.5rem; 
+.tx-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
-.table-header { 
-  color: #64748b; 
-  font-size: 0.85rem; 
-  font-weight: 500; 
-  border-bottom: 1px solid #e2e8f0; 
+.tx-search-wrap input {
+  width: 100%;
+  padding: 11px 14px 11px 42px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
 }
 
-.table-row { 
-  border-bottom: 1px solid #f1f5f9; 
-  transition: background-color 0.2s;
+.tx-search-wrap input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
 }
 
-.table-row:last-child { 
-  border-bottom: none; 
+.tx-search-wrap input::placeholder { color: #9CA3AF; }
+
+.tx-dropdowns {
+  display: flex;
+  gap: 10px;
 }
 
-.table-row:hover {
-  background-color: #f8fafc;
+/* ── Table Card ── */
+.tx-card {
+  background: #ffffff;
+  border: 1px solid #E9EDF3;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
 }
 
-/* Tablo Hücre Hizalamaları */
-.table-header > *:last-child,
-.table-row > *:last-child {
-  text-align: right;
-  justify-self: end; 
+/* ── Table Head ── */
+.tx-table-head {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  padding: 14px 24px;
+  border-bottom: 1px solid #F3F4F6;
+  background: #FAFAFA;
 }
 
-/* --- Hücre İçerikleri (Avatar, İsim, Tutar) --- */
-.recipient-cell { 
-  display: flex; 
-  align-items: center; 
-  gap: 1rem; 
-  color: #1e293b; 
-  font-weight: 600; 
+.tx-table-head span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-/* Avatar Yuvarlağı */
+.tx-table-head span:last-child { text-align: right; }
+
+/* ── Table Row ── */
+.tx-row {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid #F9FAFB;
+  transition: background 0.12s;
+}
+
+.tx-row:last-child { border-bottom: none; }
+.tx-row:hover { background: #F8FAFF; }
+
+/* ── Recipient Cell ── */
+.tx-recipient {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Avatar — kategori ikonu için daire */
 .tx-avatar {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   flex-shrink: 0;
-  overflow: hidden; /* Resim taşmasın */
-  background-color: #f1f5f9; /* Varsayılan arka plan */
+  overflow: hidden;
+}
+
+.tx-avatar svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.tx-avatar img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 .tx-name {
-  font-size: 0.95rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
 }
 
-.transaction-amount { 
-  font-weight: 600; 
-  text-align: right; 
+/* ── Other Cells ── */
+.tx-category {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0;
 }
 
-.transaction-amount.income { color: #16a34a; }
-.transaction-amount.expense { color: #334155; }
-
-/* --- Pagination (Sayfalama) --- */
-.transaction-table .pagination-container {
-  padding: 1rem 1.5rem; 
-  border-top: 1px solid #f1f5f9; 
+.tx-date {
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0;
 }
 
-.pagination-controls { 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  gap: 1rem; 
-  margin-top: 2rem; 
+.tx-amount {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
 }
 
-.pagination-controls button { 
-  padding: 0.5rem 1rem; 
-  border: 1px solid #e2e8f0; 
-  background-color: white; 
-  border-radius: 6px; 
-  cursor: pointer; 
-}
+.tx-amount--income  { color: #10B981; }
+.tx-amount--expense { color: #111827; }
 
-.pagination-controls button:disabled { 
-  background-color: #f8fafc; 
-  color: #cbd5e1; 
-  cursor: not-allowed; 
-}
-
-.no-data-message {
-  padding: 2rem;
+/* ── Empty ── */
+.tx-empty {
+  padding: 60px 20px;
   text-align: center;
-  color: #94a3b8;
+  color: #9CA3AF;
+  font-size: 14px;
 }
 
-/* --- Ortak Resim İkon Stili (Global olabilir) --- */
-.category-img-icon {
-  width: 80px;   
-  height: 80px;
-  object-fit: contain; 
-  display: block;
+/* ── Pagination wrapper ── */
+.tx-pagination {
+  border-top: 1px solid #F3F4F6;
+  padding: 0 8px;
+}
+
+/* ── Pagination override — ikinci görsel stili ── */
+.tx-pagination nav,
+.tx-pagination [class*="pagination"],
+.tx-pagination > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 0;
+}
+
+/* Tüm butonlar */
+.tx-pagination button,
+.tx-pagination [class*="page-btn"],
+.tx-pagination [class*="pageBtn"] {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #6B7280;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s, color 0.12s;
+  padding: 0 6px;
+}
+
+.tx-pagination button:hover:not(:disabled) {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+/* Aktif sayfa */
+.tx-pagination button[class*="active"],
+.tx-pagination button[aria-current="page"],
+.tx-pagination button.active {
+  background: #1E293B !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Prev / Next — metin gizle, ok göster */
+.tx-pagination button:first-child,
+.tx-pagination button:last-child {
+  color: #9CA3AF;
+  font-size: 16px;
+}
+
+.tx-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Dark mode */
+body.theme-dark .tx-pagination button {
+  color: #4B5563;
+}
+body.theme-dark .tx-pagination button:hover:not(:disabled) {
+  background: #1A1E28;
+  color: #E5E7EB;
+}
+body.theme-dark .tx-pagination button[class*="active"],
+body.theme-dark .tx-pagination button[aria-current="page"],
+body.theme-dark .tx-pagination button.active {
+  background: #E5E7EB !important;
+  color: #0B0E14 !important;
+}
+
+/* ════════════════════════════════
+   DARK MODE
+════════════════════════════════ */
+body.theme-dark .tx-page { background: #0B0E14; }
+
+body.theme-dark .tx-header { border-bottom-color: #1E2330; }
+body.theme-dark .tx-header h1 { color: #F0F2FF; }
+body.theme-dark .tx-header__eyebrow { color: #3D4A5C; }
+
+/* ── Search ── */
+body.theme-dark .tx-search-wrap input {
+  background: #141820;
+  border-color: #1E2330;
+  color: #F0F2FF;
+}
+body.theme-dark .tx-search-wrap input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+}
+body.theme-dark .tx-search-wrap input::placeholder { color: #3D4A5C; }
+body.theme-dark .tx-search-icon { color: #3D4A5C; }
+
+/* ── CustomDropdown trigger button ── */
+body.theme-dark .tx-dropdowns button,
+body.theme-dark .tx-dropdowns [class*="dropdown"] > button,
+body.theme-dark .tx-dropdowns [class*="dropdown-trigger"],
+body.theme-dark .tx-dropdowns [class*="dropdownTrigger"],
+body.theme-dark .tx-dropdowns [class*="select-btn"],
+body.theme-dark .tx-dropdowns > div > button {
+  background: #141820 !important;
+  border-color: #1E2330 !important;
+  color: #E5E7EB !important;
+}
+
+body.theme-dark .tx-dropdowns button:hover,
+body.theme-dark .tx-dropdowns > div > button:hover {
+  background: #1A1E28 !important;
+  border-color: #2D3A50 !important;
+}
+
+/* ── CustomDropdown açılır liste ── */
+body.theme-dark .tx-dropdowns [class*="dropdown-menu"],
+body.theme-dark .tx-dropdowns [class*="dropdownMenu"],
+body.theme-dark .tx-dropdowns [class*="dropdown-list"],
+body.theme-dark .tx-dropdowns [class*="dropdownList"],
+body.theme-dark .tx-dropdowns [class*="options"],
+body.theme-dark .tx-dropdowns ul,
+body.theme-dark .tx-dropdowns > div > ul,
+body.theme-dark .tx-dropdowns > div > div {
+  background: #141820 !important;
+  border-color: #1E2330 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Dropdown seçenek öğeleri ── */
+body.theme-dark .tx-dropdowns li,
+body.theme-dark .tx-dropdowns [class*="option"],
+body.theme-dark .tx-dropdowns [class*="dropdown-item"],
+body.theme-dark .tx-dropdowns [class*="dropdownItem"] {
+  color: #E5E7EB !important;
+  background: transparent !important;
+}
+
+body.theme-dark .tx-dropdowns li:hover,
+body.theme-dark .tx-dropdowns [class*="option"]:hover,
+body.theme-dark .tx-dropdowns [class*="dropdown-item"]:hover {
+  background: #1A1E28 !important;
+  color: #F0F2FF !important;
+}
+
+body.theme-dark .tx-dropdowns li[class*="active"],
+body.theme-dark .tx-dropdowns li[class*="selected"],
+body.theme-dark .tx-dropdowns [class*="option"][class*="active"] {
+  background: #1E2330 !important;
+  color: #F0F2FF !important;
+  font-weight: 600;
+}
+
+/* Scrollbar — dropdown içi */
+body.theme-dark .tx-dropdowns ul::-webkit-scrollbar { width: 4px; }
+body.theme-dark .tx-dropdowns ul::-webkit-scrollbar-track { background: #141820; }
+body.theme-dark .tx-dropdowns ul::-webkit-scrollbar-thumb { background: #1E2330; border-radius: 2px; }
+
+/* ── Table Card ── */
+body.theme-dark .tx-card {
+  background: #141820;
+  border-color: #1E2330;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+body.theme-dark .tx-table-head {
+  background: #0F1318;
+  border-bottom-color: #1E2330;
+}
+body.theme-dark .tx-table-head span { color: #3D4A5C; }
+
+body.theme-dark .tx-row { border-bottom-color: #1A1E28; }
+body.theme-dark .tx-row:hover { background: #1A1E28; }
+
+body.theme-dark .tx-name     { color: #E5E7EB; }
+body.theme-dark .tx-category { color: #4B5A70; }
+body.theme-dark .tx-date     { color: #4B5A70; }
+body.theme-dark .tx-amount--expense { color: #E5E7EB; }
+body.theme-dark .tx-amount--income  { color: #10B981; }
+
+body.theme-dark .tx-empty { color: #3D4A5C; }
+body.theme-dark .tx-pagination { border-top-color: #1E2330; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .tx-page { padding: 20px 16px; }
+  .tx-table-head,
+  .tx-row { grid-template-columns: 1fr 1fr; padding: 14px 16px; }
+  .tx-table-head span:nth-child(2),
+  .tx-table-head span:nth-child(3),
+  .tx-row .tx-category,
+  .tx-row .tx-date { display: none; }
 }

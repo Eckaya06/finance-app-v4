@@ -8,7 +8,13 @@ import budgetRoutes from './routes/budgetRoutes.js';
 import potRoutes from './routes/potRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 
-dotenv.config();
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: join(__dirname, '.env'), override: true });
+console.log('Loaded backend env from', join(__dirname, '.env'));
 connectDB();
 
 const app = express();

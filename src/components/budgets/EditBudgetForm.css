@@ -93,3 +93,36 @@
 .form-submit-btn:hover {
   background-color: #383838;
 }
+
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .edit-budget-form h2 {
+  color: #F1F5F9;
+}
+
+body.theme-dark .edit-budget-form p {
+  color: #6B7280;
+}
+
+body.theme-dark .form-group label {
+  color: #9CA3AF;
+}
+
+body.theme-dark .form-input,
+body.theme-dark .form-select {
+  background-color: #1A1E2E;
+  border-color: #2A2F45;
+  color: #E2E8F0;
+}
+
+body.theme-dark .form-input:focus,
+body.theme-dark .form-select:focus {
+  border-color: #6366F1;
+}
+
+body.theme-dark .form-submit-btn {
+  background-color: #6366F1;
+}
+
+body.theme-dark .form-submit-btn:hover {
+  background-color: #4F46E5;
+}

@@ -20,17 +20,14 @@
   margin-bottom: 1rem;
 }
 
-/* ✅ KRİTİK DEĞİŞİKLİK: Column yerine Row yaptık ki yan yana dursunlar */
 .delete-modal-actions {
   display: flex;
-  flex-direction: row; 
-  gap: 1rem; /* Butonlar arası boşluk */
-  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-/* ✅ Kırmızı silme butonu */
 .btn-delete-confirm {
-  flex: 1; /* Genişliği diğer butonla eşit paylaşır */
+  width: 100%;
   padding: 16px;
   border: none;
   border-radius: 8px;
@@ -46,21 +43,13 @@
   background: #b73f30;
 }
 
-/* ✅ İptal butonu: Diğer butonla aynı boyda ve hizada olması için güncelledik */
 .btn-delete-cancel {
-  flex: 1; /* Genişliği kırmızı butonla eşit paylaşır */
-  padding: 16px; /* Kırmızı butonla aynı kalınlıkta olması için */
-  background: #f8fafc; /* Göz yormayan şık açık gri arka plan */
+  background: none;
   border: none;
-  border-radius: 8px;
   color: #696868;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-delete-cancel:hover {
-  background: #f1f5f9;
+  padding: 0.5rem;
 }
 

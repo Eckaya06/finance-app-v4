@@ -1,3 +1,4 @@
+// src/components/pots/EditPotForm.jsx
 import { useState } from 'react';
 import './EditPotForm.css';
 
@@ -11,109 +12,95 @@ const themeOptions = [
   { value: 'purple', label: 'Purple', color: '#8b5cf6' },
 ];
 
+const sd = {
+  wrap: { position: 'relative' },
+  swatch: { width: '14px', height: '14px', borderRadius: '50%', flexShrink: 0 },
+};
+
 const EditPotForm = ({ pot, onUpdatePot, onClose }) => {
-  // Mevcut pot verileriyle state'leri başlatıyoruz
   const [name, setName] = useState(pot?.name || '');
   const [target, setTarget] = useState(pot?.target || '');
   const [theme, setTheme] = useState(pot?.theme || null);
-  const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!name || !target || parseFloat(target) <= 0 || !theme) {
       alert("Please fill in all fields with valid values.");
       return;
     }
-    
-    onUpdatePot(pot.id, { 
-      name, 
-      target: parseFloat(target), 
-      theme 
-    });
+    onUpdatePot(pot.id, { name, target: parseFloat(target), theme });
   };
 
-  const selectedThemeObject = themeOptions.find(opt => opt.value === theme);
+  const selectedTheme = themeOptions.find(o => o.value === theme);
 
   return (
     <form onSubmit={handleSubmit} className="edit-pot-form">
       <h2>Edit Pot</h2>
       <p>Update the name, target amount, or theme for this pot.</p>
-      
+
       <div className="form-group">
         <label htmlFor="pot-name">Pot Name</label>
-        <input 
+        <input
           id="pot-name"
-          type="text" 
+          type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
           placeholder="e.g., Rainy Day"
           className="form-input"
         />
       </div>
-      
+
       <div className="form-group">
         <label htmlFor="pot-target">Target</label>
-        <input 
+        <input
           id="pot-target"
-          type="number" 
+          type="number"
           value={target}
-          onChange={(e) => setTarget(e.target.value)}
+          onChange={e => setTarget(e.target.value)}
           placeholder="e.g., 2000"
           className="form-input"
         />
       </div>
 
-      {/* TEMA SEÇİMİ (ŞIK AÇILIR MENÜ) */}
       <div className="form-group">
         <label>Theme</label>
-        <div className="custom-select-container">
-          <button 
-            type="button" 
-            className="select-selected-value" 
-            onClick={() => setIsThemeDropdownOpen(!isThemeDropdownOpen)}
+        <div style={sd.wrap}>
+          <button
+            type="button"
+            className="pot-theme-select-btn"
+            onClick={() => setIsThemeOpen(!isThemeOpen)}
           >
-            {selectedThemeObject ? (
-              <div className="theme-option-display">
-                <span 
-                  className="theme-color-swatch" 
-                  style={{ backgroundColor: selectedThemeObject.color }}
-                ></span>
-                <span className="selected-label-text">{selectedThemeObject.label}</span>
+            {selectedTheme ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ ...sd.swatch, backgroundColor: selectedTheme.color }} />
+                <span>{selectedTheme.label}</span>
               </div>
             ) : (
-              <span className="select-placeholder">Choose a theme</span>
+              <span className="pot-theme-placeholder">Choose a theme</span>
             )}
-            <span className={`select-arrow ${isThemeDropdownOpen ? 'open' : ''}`}>▼</span>
+            <span className="pot-theme-arrow" style={{ transform: isThemeOpen ? 'rotate(180deg)' : 'none' }}>▼</span>
           </button>
-
-          {isThemeDropdownOpen && (
-            <ul className="select-options">
-              {themeOptions.map(option => (
-                <li 
-                  key={option.value} 
-                  className="select-option"
-                  onClick={() => {
-                    setTheme(option.value);
-                    setIsThemeDropdownOpen(false);
-                  }}
+          {isThemeOpen && (
+            <ul className="pot-theme-list">
+              {themeOptions.map(opt => (
+                <li
+                  key={opt.value}
+                  className="pot-theme-option"
+                  onClick={() => { setTheme(opt.value); setIsThemeOpen(false); }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  <div className="theme-option-display">
-                    <span 
-                      className="theme-color-swatch" 
-                      style={{ backgroundColor: option.color }}
-                    ></span>
-                    {option.label}
-                  </div>
+                  <span style={{ ...sd.swatch, backgroundColor: opt.color }} />
+                  {opt.label}
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-      
-      <button type="submit" className="form-submit-btn">
-        Save Changes
-      </button>
+
+      <button type="submit" className="form-submit-btn">Save Changes</button>
     </form>
   );
 };

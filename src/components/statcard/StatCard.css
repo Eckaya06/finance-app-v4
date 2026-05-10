@@ -31,3 +31,26 @@
   font-weight: 600;
   letter-spacing: -1px; /* Rakamların arasını hafif daralt */
 }
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .stat-card {
+  background-color: #2A2D35;
+  border-color: #3A3D45;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+body.theme-dark .stat-card.primary {
+  background-color: #1e293b;
+  border: 1px solid #2d3f57;
+}
+
+body.theme-dark .stat-card-title {
+  color: #9b9ca3;
+}
+
+body.theme-dark .stat-card.primary .stat-card-title {
+  color: #9b9ca3;
+}
+
+body.theme-dark .stat-card-amount {
+  color: #ffffff;
+}

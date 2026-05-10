@@ -1,0 +1,107 @@
+/* src/components/pots/AddMoneyForm.css */
+
+/* ════════════ DARK MODE — Add Money & Withdraw ════════════ */
+
+body.theme-dark .add-money-title,
+body.theme-dark .withdraw-title {
+  color: #F1F5F9;
+}
+
+body.theme-dark .add-money-desc,
+body.theme-dark .withdraw-desc {
+  color: #6B7280;
+}
+
+/* Preview kutusu */
+body.theme-dark .add-money-preview,
+body.theme-dark .preview-section {
+  background: #1A1E2E !important;
+  border: 1px solid #2A2F45;
+}
+
+body.theme-dark .add-money-preview-label,
+body.theme-dark .preview-label {
+  color: #4B5563 !important;
+}
+
+body.theme-dark .add-money-preview-amount,
+body.theme-dark .preview-amount {
+  color: #F1F5F9 !important;
+}
+
+body.theme-dark .add-money-preview-track {
+  background: #2A2F45 !important;
+}
+
+body.theme-dark .add-money-preview-meta,
+body.theme-dark .preview-target {
+  color: #4B5563 !important;
+}
+
+/* Progress bar track (withdraw) */
+body.theme-dark .preview-progress {
+  background: #2A2F45 !important;
+}
+
+/* Label */
+body.theme-dark .add-money-label,
+body.theme-dark .form-group label {
+  color: #9CA3AF;
+}
+
+/* Input wrapper */
+body.theme-dark .add-money-input-wrap {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+}
+
+body.theme-dark .add-money-prefix {
+  background: #161B2C !important;
+  border-right-color: #2A2F45 !important;
+  color: #4B5563 !important;
+}
+
+body.theme-dark .add-money-input {
+  background: transparent !important;
+  color: #E2E8F0 !important;
+}
+
+body.theme-dark .add-money-input::placeholder {
+  color: #4B5563;
+}
+
+/* Withdraw: input */
+body.theme-dark .form-group input {
+  background: #1A1E2E;
+  border-color: #2A2F45;
+  color: #E2E8F0;
+}
+
+body.theme-dark .form-group input::placeholder {
+  color: #4B5563;
+}
+
+body.theme-dark .form-group input.input-error {
+  border-color: #EF4444;
+}
+
+/* Submit butonlar */
+body.theme-dark .add-money-submit,
+body.theme-dark .btn-primary.form-submit-btn {
+  background: #6366F1 !important;
+}
+
+body.theme-dark .add-money-submit:hover,
+body.theme-dark .btn-primary.form-submit-btn:hover {
+  background: #4F46E5 !important;
+}
+
+body.theme-dark .btn-primary.form-submit-btn:disabled {
+  background: #374151 !important;
+  cursor: not-allowed;
+}
+
+/* Error mesajı */
+body.theme-dark .form-error {
+  color: #F87171;
+}

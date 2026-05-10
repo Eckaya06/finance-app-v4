@@ -1,40 +1,102 @@
 /* src/pages/home/Home.css */
 
-.page-title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0 0 1.5rem 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-.stat-cards-grid {
-  display: grid;
-  /* Mümkünse 3 sütun, sığmazsa 2 veya 1 sütun yap */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem; /* Kartlar arası boşluk */
-}
-
-/* --- EKSİK OLAN VE ŞİMDİ EKLEDİĞİMİZ KISIM --- */
-
-/* Stat kartlarının altındaki ana bölüm için grid yapısı */
-.dashboard-main-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr; /* Sol sütun (2 birim), Sağ sütun (1 birim) */
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  align-items: start; /* Sütunların içeriklerini yukarıdan başlat */
-}
-
-/* Sol sütundaki bileşenleri alt alta dizmek için */
-.main-left-column {
+.home-page {
+  padding: 32px 40px;
+  background: #F6F8FA;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Pots ve Transactions kartları arası boşluk */
+  gap: 20px;
 }
 
-/* Sağ sütundaki bileşenleri alt alta dizmek için */
-.main-right-column {
+/* ── Header ── */
+.home-header {
   display: flex;
-  flex-direction: column;
-  gap: 2.3rem; /* Budgets ve Recurring Bills kartları arası boşluk */
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EAECF0;
 }
+
+.home-header__eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 6px;
+}
+
+.home-header__title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+/* ── 3 Stat Cards ── */
+.home-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── 2 kolon grid (Pots+Tx, Budgets+Bills) ── */
+.home-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .home-stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .home-two-col   { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .home-page { padding: 20px 16px; }
+  .home-stat-grid { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════
+   DARK MODE
+════════════════════════════════ */
+body.theme-dark .home-page {
+  background: #1F2128;
+}
+
+body.theme-dark .home-header {
+  border-bottom-color: #2A2D35;
+}
+
+body.theme-dark .home-header__eyebrow {
+  color: #6B6D73;
+}
+
+body.theme-dark .home-header__title {
+  color: #ffffff;
+}
+
+/* Refresh butonu */
+body.theme-dark .home-refresh-btn {
+  background: #2A2D35;
+  border-color: #3A3D45;
+  color: #9b9ca3;
+}
+
+body.theme-dark .home-refresh-btn:hover {
+  border-color: #6366F1;
+  color: #818CF8;
+  background: #2d3042;
+}
+
+/* Stat kartlarındaki genel yazılar */
+body.theme-dark .stat-card-amount { color: #ffffff; }
+body.theme-dark .stat-card-title  { color: #9b9ca3; }

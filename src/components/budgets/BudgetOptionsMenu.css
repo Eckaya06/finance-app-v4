@@ -1,7 +1,7 @@
 .budget-options-menu {
   position: absolute;
-  top: -2rem; /* Butonun padding'i ve konumuyla ilgili */
-  right: 0rem;
+  top: 3.5rem; /* Butonun padding'i ve konumuyla ilgili */
+  right: 1.5rem;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
@@ -43,4 +43,32 @@
   height: 1px;
   background-color: #f1f5f9;
   margin: 0.5rem 0;
+}
+
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .budget-options-menu {
+  background-color: #1A1E2E;
+  border: 1px solid #2A2F45;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-dark .options-menu-item {
+  color: #CBD5E1;
+}
+
+body.theme-dark .options-menu-item:hover {
+  background-color: #252C42;
+  color: #F1F5F9;
+}
+
+body.theme-dark .options-menu-item.delete {
+  color: #F87171;
+}
+
+body.theme-dark .options-menu-item.delete:hover {
+  background-color: rgba(239, 68, 68, 0.12);
+}
+
+body.theme-dark .options-menu-divider {
+  background-color: #2A2F45;
 }
