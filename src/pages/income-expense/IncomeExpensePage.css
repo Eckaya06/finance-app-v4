@@ -1,6 +1,65 @@
 /* src/pages/income-expense/IncomeExpensePage.css */
 
-/* --- Üst Kısım: Özet Kartları --- */
+/* ── Sayfa ── */
+.ie-page {
+  padding: 32px 40px;
+  background: #F6F8FA;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Header ── */
+.ie-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #EAECF0;
+}
+
+.ie-header__eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 6px;
+}
+
+.ie-header__title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.ie-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: #1E293B;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.ie-add-btn:hover {
+  background: #0F172A;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.16);
+}
+
+/* ── Özet Kartları ── */
 .ie-summary-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,101 +68,121 @@
 }
 
 .ie-summary-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 16px;
+  background: #ffffff;
+  padding: 1.75rem;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid #E9EDF3;
 }
 
 .ie-card-icon {
-  width: 54px;
-  height: 54px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
+  flex-shrink: 0;
 }
 
-.income .ie-card-icon { background: #dcfce7; color: #22c55e; }
-.expense .ie-card-icon { background: #fee2e2; color: #ef4444; }
+.income .ie-card-icon { background: #DCFCE7; color: #22C55E; }
+.expense .ie-card-icon { background: #FEE2E2; color: #EF4444; }
 
-.ie-card-info span { color: #64748b; font-size: 0.95rem; font-weight: 500; }
-.ie-card-info h3 { font-size: 1.75rem; margin-top: 0.25rem; font-weight: 700; }
+.ie-card-info span {
+  color: #9CA3AF;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
 
-/* --- İşlem Listesi (Transaction List) --- */
+.ie-card-info h3 {
+  font-size: 2rem;
+  margin: 0.2rem 0 0;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+/* ── İşlem Listesi ── */
 .ie-transactions-container {
-  background: white;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  background: #ffffff;
+  border: 1px solid #E9EDF3;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
 }
 
 .ie-list-header {
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #f1f5f9;
-  padding-bottom: 1rem;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.ie-list-header h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
 }
 
 .ie-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem; 
-  border-bottom: 1px solid #f1f5f9;
-  border-radius: 12px; 
-  transition: all 0.2s ease;
-  user-select: none; 
+  padding: 14px 24px;
+  border-bottom: 1px solid #F9FAFB;
+  transition: background 0.12s;
+  user-select: none;
   -webkit-user-select: none;
   cursor: default;
 }
 
-.ie-list-item:hover {
-  background-color: #f8fafc;
-}
+.ie-list-item:last-child { border-bottom: none; }
+.ie-list-item:hover { background: #F8FAFF; }
 
-.ie-item-left { display: flex; align-items: center; gap: 1rem; }
-.ie-item-right { display: flex; align-items: center; gap: 1.5rem; }
+.ie-item-left  { display: flex; align-items: center; gap: 14px; }
+.ie-item-right { display: flex; align-items: center; gap: 20px; }
 
 /* Avatar */
 .ie-item-avatar {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
   flex-shrink: 0;
-  overflow: hidden;
 }
 
-.ie-item-meta { display: flex; flex-direction: column; }
-.ie-item-name { font-weight: 600; color: #1e293b; font-size: 1rem; }
-.ie-item-sub { font-size: 0.85rem; color: #94a3b8; }
+.ie-item-meta  { display: flex; flex-direction: column; gap: 2px; }
+.ie-item-name  { font-weight: 600; color: #111827; font-size: 14px; }
+.ie-item-sub   { font-size: 12px; color: #9CA3AF; }
 
-.ie-item-amount { font-weight: 700; font-size: 1.1rem; }
-.ie-item-amount.income { color: #22c55e; }
-.ie-item-amount.expense { color: #1e293b; }
+.ie-item-amount {
+  font-weight: 700;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.ie-item-amount.income  { color: #10B981; }
+.ie-item-amount.expense { color: #111827; }
 
-/* --- Silme Butonu ve Hover Efektleri --- */
+/* ── Silme Butonu ── */
 .btn-delete-transaction {
   background: transparent;
   border: none;
-  color: #ef4444;
+  color: #EF4444;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 8px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  opacity: 0; 
-  transform: translateX(10px);
+  transition: all 0.2s;
+  opacity: 0;
+  transform: translateX(8px);
 }
 
 .ie-list-item:hover .btn-delete-transaction {
@@ -111,134 +190,26 @@
   transform: translateX(0);
 }
 
-.btn-delete-transaction:hover {
-  background-color: #fee2e2;
+.btn-delete-transaction:hover { background: #FEE2E2; }
+
+/* ── Pagination ── */
+.ie-pagination {
+  border-top: 1px solid #F3F4F6;
+  padding: 0 8px;
 }
 
-/* --- Form Elemanları (Tip Seçici) --- */
-.ie-type-selector {
-  display: flex;
-  gap: 1rem;
-  margin: 1.5rem 0;
-  background: #f1f5f9;
-  padding: 0.4rem;
-  border-radius: 12px;
-}
-
-.ie-type-selector button {
-  flex: 1; padding: 0.8rem; border: none; border-radius: 10px;
-  font-weight: 600; cursor: pointer; transition: 0.2s; background: transparent; color: #64748b;
-}
-
-.ie-type-selector button.active.expense { background: #ef4444; color: white; }
-.ie-type-selector button.active.income { background: #22c55e; color: white; }
-.full-width { width: 100%; margin-top: 1rem; }
-.btn-primary.income { background: #22c55e; }
-
-/* --- Custom Dropdown Stilleri --- */
-.custom-dropdown-container {
-  position: relative;
-  width: 100%;
-}
-
-.dropdown-trigger {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background-color: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-size: 0.95rem;
-  color: #1e293b;
-  transition: all 0.2s;
-  text-align: left;
-}
-
-.dropdown-trigger.placeholder-mode {
-  color: #94a3b8;
-}
-.dropdown-trigger.placeholder-mode span {
-  font-weight: 400;
-}
-
-.dropdown-trigger:hover,
-.dropdown-trigger.open {
-  border-color: #1e293b;
-}
-
-.dropdown-arrow {
-  transition: transform 0.2s;
-  color: #64748b;
-}
-.dropdown-trigger.open .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 110%;
-  left: 0;
-  width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  z-index: 50;
-  padding: 0.5rem 0;
-  list-style: none;
-}
-
-.dropdown-item {
-  padding: 0.7rem 1rem;
-  font-size: 0.95rem;
-  color: #475569;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.dropdown-item:hover {
-  background-color: #f1f5f9;
-  color: #1e293b;
-}
-
-.dropdown-item.selected {
-  background-color: #f8fafc;
-  font-weight: 600;
-  color: #0f172a;
-  border-left: 3px solid #0f172a;
-}
-
-.read-only-input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  color: #94a3b8;
-  font-size: 0.95rem;
-  cursor: not-allowed;
-}
-
-/* --- Silme Modalı (Delete Modal) --- */
-.delete-modal-content {
-  padding: 1rem 0.5rem;
-  text-align: left;
-}
+/* ── Silme Modalı ── */
+.delete-modal-content { padding: 1rem 0.5rem; text-align: left; }
 
 .delete-header h2 {
   font-size: 1.5rem;
-  color: #1e293b;
+  color: #1E293B;
   margin-bottom: 1rem;
   font-weight: 700;
 }
 
 .delete-message {
-  color: #64748b;
+  color: #64748B;
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -248,10 +219,9 @@
   display: flex;
   gap: 16px;
   margin-top: 24px;
-  width: 100%;
 }
 
-.btn-delete-confirm, 
+.btn-delete-confirm,
 .btn-delete-cancel {
   flex: 1;
   padding: 12px 20px;
@@ -261,43 +231,299 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   border: none;
-  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: inherit;
 }
 
-/* ONAY BUTONU (Kırmızı) */
-.btn-delete-confirm {
-  background-color: #e74c3c;
-  color: white;
-}
-
+.btn-delete-confirm { background: #E74C3C; color: white; }
 .btn-delete-confirm:hover {
-  background-color: #c0392b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+  background: #C0392B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(231,76,60,0.25);
 }
-
 
 .btn-delete-cancel {
-  background-color: #ffffff !important; /* ✅ Arka planı beyaz yaptık */
-  color: #4b5563 !important;           /* Yazı rengi koyu gri */
-  border: 1px solid #9ca3af !important; /* ✅ Belirgin, orta tonlu gri kenarlık */
+  background: #ffffff !important;
+  color: #4B5563 !important;
+  border: 1px solid #9CA3AF !important;
 }
-
-/* Hover (Üzerine gelince) */
 .btn-delete-cancel:hover {
-  background-color: #f3f4f6 !important; /* Üzerine gelince çok hafif bir gri tonuna döner */
-  color: #111827 !important;           /* Yazı rengi daha da koyulaşır */
-  border-color: #6b7280 !important;    /* Kenarlık da biraz daha belirginleşir */
-  transform: translateY(-1px);         /* Hafif bir kalkma efekti */
+  background: #F3F4F6 !important;
+  color: #111827 !important;
+  border-color: #6B7280 !important;
+  transform: translateY(-1px);
 }
 
-/* --- Ortak Resim İkon Stili --- */
-.category-img-icon {
-  width: 80px;   
-  height: 80px;
-  object-fit: contain; 
-  display: block;
+/* ── Form: Tip Seçici ── */
+.ie-type-selector {
+  display: flex; gap: 1rem; margin: 1.5rem 0;
+  background: #F1F5F9; padding: 0.4rem; border-radius: 12px;
+}
+.ie-type-selector button {
+  flex: 1; padding: 0.8rem; border: none; border-radius: 10px;
+  font-weight: 600; cursor: pointer; transition: 0.2s;
+  background: transparent; color: #64748B;
+}
+.ie-type-selector button.active.expense { background: #EF4444; color: white; }
+.ie-type-selector button.active.income  { background: #22C55E; color: white; }
+
+/* ── AddTransactionForm ── */
+.ie-add-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ie-add-form-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+
+.ie-add-form-desc {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ie-add-form-type-selector {
+  display: flex;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ie-add-form-type-btn {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background: #fff;
+  color: #6b7280;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ie-add-form-type-btn.active.expense { background: #111; color: #fff; }
+.ie-add-form-type-btn.active.income  { background: #22c55e; color: #fff; }
+
+.ie-add-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ie-add-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ie-add-form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.ie-add-form-input {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  color: #111;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.ie-add-form-input:focus { border-color: #9ca3af; }
+
+.ie-add-form-readonly {
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.ie-add-form-select-wrap { position: relative; }
+
+.ie-add-form-select-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  color: #111;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.ie-add-form-select-btn .placeholder { color: #9ca3af; }
+
+.ie-add-form-arrow {
+  font-size: 11px;
+  color: #6b7280;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.ie-add-form-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.ie-add-form-dropdown li {
+  padding: 9px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #111;
+  transition: background 0.12s;
+}
+
+.ie-add-form-dropdown li:hover,
+.ie-add-form-dropdown li.selected {
+  background: #f3f4f6;
+  font-weight: 500;
+}
+
+.ie-add-form-submit {
+  width: 100%;
+  padding: 13px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  font-family: inherit;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.ie-add-form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+.ie-add-form-submit.income { background: #22c55e; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ie-page { padding: 20px 16px; }
+  .ie-summary-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Dark Mode ── */
+body.theme-dark .ie-page { background: #0B0E14; }
+body.theme-dark .ie-header { border-bottom-color: #1E2330; }
+body.theme-dark .ie-header__eyebrow { color: #3D4A5C; }
+body.theme-dark .ie-header__title { color: #F0F2FF; }
+body.theme-dark .ie-add-btn { background: #E5E7EB; color: #0B0E14; }
+body.theme-dark .ie-add-btn:hover { background: #F9FAFB; }
+
+body.theme-dark .ie-summary-card {
+  background: #141820;
+  border-color: #1E2330;
+}
+body.theme-dark .ie-card-info span { color: #4B5A70; }
+body.theme-dark .ie-card-info h3 { color: #F0F2FF; }
+
+body.theme-dark .ie-transactions-container {
+  background: #141820;
+  border-color: #1E2330;
+}
+body.theme-dark .ie-list-header { border-bottom-color: #1E2330; }
+body.theme-dark .ie-list-header h2 { color: #F0F2FF; }
+body.theme-dark .ie-list-item { border-bottom-color: #1A1E28; }
+body.theme-dark .ie-list-item:hover { background: #1A1E28; }
+body.theme-dark .ie-item-name { color: #E5E7EB; }
+body.theme-dark .ie-item-sub { color: #4B5A70; }
+body.theme-dark .ie-item-amount.expense { color: #E5E7EB; }
+body.theme-dark .ie-pagination { border-top-color: #1E2330; }
+
+/* ── Dark Mode: AddTransactionForm ── */
+body.theme-dark .ie-add-form-wrapper {
+  background: #141820;
+  color: #F0F2FF;
+}
+body.theme-dark .ie-add-form-title { color: #F0F2FF; }
+body.theme-dark .ie-add-form-desc  { color: #4B5A70; }
+
+body.theme-dark .ie-add-form-type-selector {
+  background: #0B0E14;
+  border: 1px solid #1E2330;
+}
+body.theme-dark .ie-add-form-type-selector button {
+  color: #4B5A70;
+  background: transparent;
+}
+body.theme-dark .ie-add-form-type-selector button.active.expense {
+  background: #1E293B;
+  color: #F0F2FF;
+}
+body.theme-dark .ie-add-form-type-selector button.active.income {
+  background: #166534;
+  color: #F0F2FF;
+}
+
+body.theme-dark .ie-add-form-label { color: #8A96A8; }
+
+body.theme-dark .ie-add-form-input {
+  background: #0F1318;
+  border-color: #1E2330;
+  color: #F0F2FF;
+}
+body.theme-dark .ie-add-form-input::placeholder { color: #3D4A5C; }
+body.theme-dark .ie-add-form-input:focus { border-color: #2D3A50; outline: none; }
+
+body.theme-dark .ie-add-form-readonly {
+  background: #0B0E14;
+  border-color: #1E2330;
+  color: #4B5A70;
+}
+
+body.theme-dark .ie-add-form-select-btn {
+  background: #0F1318;
+  border-color: #1E2330;
+  color: #F0F2FF;
+}
+body.theme-dark .ie-add-form-select-btn .placeholder { color: #3D4A5C; }
+
+body.theme-dark .ie-add-form-dropdown {
+  background: #141820;
+  border-color: #1E2330;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+body.theme-dark .ie-add-form-dropdown li {
+  color: #E5E7EB;
+}
+body.theme-dark .ie-add-form-dropdown li:hover,
+body.theme-dark .ie-add-form-dropdown li.selected {
+  background: #1E2330;
 }

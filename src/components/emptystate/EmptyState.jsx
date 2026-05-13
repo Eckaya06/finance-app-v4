@@ -3,15 +3,12 @@ import './EmptyState.css';
 const EmptyState = ({ title, message, buttonText, onAction, icon, backgroundImage }) => {
   return (
     <div className="empty-state-container">
-      
-      {/* YENİ: Inline style yerine resmi doğrudan img olarak ekliyoruz. 
-          Tarayıcı bunu CSS'i beklemeden anında indirecek! */}
       {backgroundImage && (
-        <img 
-          src={backgroundImage} 
-          alt="background" 
-          className="empty-state-bg-img" 
-          fetchPriority="high" // Tarayıcıya öncelik verdirir
+        <img
+          src={backgroundImage}
+          alt="background"
+          className="empty-state-bg-img"
+          fetchPriority="high"
         />
       )}
 
@@ -24,7 +21,31 @@ const EmptyState = ({ title, message, buttonText, onAction, icon, backgroundImag
         <p className="empty-state-message-text">{message}</p>
 
         {buttonText && (
-          <button className="btn-primary" onClick={onAction}>
+          <button
+            onClick={onAction}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '11px 28px',
+              fontSize: '14px',
+              fontWeight: '600',
+              color: '#fff',
+              background: '#111827',
+              border: 'none',
+              borderRadius: '999px',
+              cursor: 'pointer',
+              transition: 'background 150ms, transform 150ms',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = '#1f2937';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = '#111827';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
             {buttonText}
           </button>
         )}

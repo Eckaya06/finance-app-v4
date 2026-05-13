@@ -1,0 +1,77 @@
+/* src/components/budgets/AddBudgetForm.css */
+
+/* ════════════ DARK MODE — Add New Budget Modal ════════════ */
+
+body.theme-dark .add-budget-form-title {
+  color: #F1F5F9;
+}
+
+body.theme-dark .add-budget-form-desc {
+  color: #6B7280;
+}
+
+body.theme-dark .add-budget-form-label {
+  color: #9CA3AF;
+}
+
+/* Select butonu */
+body.theme-dark .add-budget-select-btn {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+  color: #E2E8F0 !important;
+}
+
+/* Dropdown listesi */
+body.theme-dark .add-budget-options-list {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.theme-dark .add-budget-option-item {
+  color: #CBD5E1 !important;
+}
+
+body.theme-dark .add-budget-option-item:hover {
+  background: #252C42 !important;
+}
+
+/* Input wrapper ($) */
+body.theme-dark .add-budget-input-wrapper {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+}
+
+body.theme-dark .add-budget-prefix {
+  background: #161B2C !important;
+  border-right-color: #2A2F45 !important;
+  color: #4B5563 !important;
+}
+
+body.theme-dark .add-budget-input {
+  background: transparent !important;
+  color: #E2E8F0 !important;
+}
+
+body.theme-dark .add-budget-input::placeholder {
+  color: #4B5563;
+}
+
+/* Submit butonu */
+body.theme-dark .add-budget-submit-btn {
+  background: #6366F1 !important;
+}
+
+body.theme-dark .add-budget-submit-btn:hover {
+  background: #4F46E5 !important;
+}
+
+/* Placeholder rengi */
+body.theme-dark .add-budget-placeholder {
+  color: #4B5563 !important;
+}
+
+/* Arrow icon */
+body.theme-dark .add-budget-arrow {
+  color: #4B5563 !important;
+}

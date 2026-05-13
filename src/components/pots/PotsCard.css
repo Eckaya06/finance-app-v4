@@ -106,3 +106,28 @@
   flex-direction: column;
   justify-content: center;
 }
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .card-container {
+  background-color: #2A2D35;
+  border-color: #3A3D45;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+body.theme-dark .card-header h2 { color: #ffffff; }
+
+body.theme-dark .see-details-link { color: #818CF8; }
+
+body.theme-dark .total-saved-section {
+  background-color: #1F2128;
+}
+
+body.theme-dark .total-saved-icon {
+  background-color: rgba(99,102,241,0.15);
+  color: #818CF8;
+}
+
+body.theme-dark .total-saved-label { color: #9b9ca3; }
+body.theme-dark .total-saved-amount { color: #ffffff; }
+
+body.theme-dark .pot-name   { color: #9b9ca3; }
+body.theme-dark .pot-amount { color: #ffffff; }

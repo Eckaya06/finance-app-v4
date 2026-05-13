@@ -318,52 +318,6 @@
 .an-bud-fill--warn { background:#F59E0B; }
 .an-bud-fill--over { background:#EF4444; width:100%!important; }
 
-/* ── Live Rates strip ── */
-.an-rates-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
-}
-.an-rate-card {
-  background: #FAFAFA;
-  border: 1px solid #F0F1F3;
-  border-radius: 12px;
-  padding: 12px 14px;
-  transition: box-shadow 150ms, border-color 150ms;
-}
-.an-rate-card:hover { border-color:#4F46E5; box-shadow:0 2px 12px rgba(79,70,229,0.08); }
-.an-rate-card__top {
-  display:flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:10px;
-}
-.an-rate-card__flag { font-size:18px; line-height:1; flex-shrink:0; }
-.an-rate-card__code { font-size:12px; font-weight:700; color:#111827; margin:0 0 1px; }
-.an-rate-card__name { font-size:9px; color:#9CA3AF; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:70px; }
-.an-rate-card__chg  {
-  margin-left:auto;
-  font-size:10px;
-  font-weight:700;
-  font-variant-numeric:tabular-nums;
-  padding:2px 6px;
-  border-radius:4px;
-}
-.an-rate-card__chg--up   { color:#10B981; background:#F0FDF4; }
-.an-rate-card__chg--down { color:#EF4444; background:#FFF1F2; }
-.an-rate-card__bot {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.an-rate-card__val {
-  font-size:13px;
-  font-weight:700;
-  color:#111827;
-  font-variant-numeric:tabular-nums;
-  letter-spacing:-0.3px;
-}
-
 /* ── Empty state ── */
 .an-empty {
   display:flex;
@@ -378,9 +332,6 @@
 .an-empty__sub   { font-size:12px; color:#9CA3AF; margin:0; max-width:260px; line-height:1.6; }
 
 /* ── Responsive ── */
-@media (max-width: 1280px) {
-  .an-rates-grid { grid-template-columns: repeat(4,1fr); }
-}
 @media (max-width: 1100px) {
   .an-body   { grid-template-columns: 1fr; }
   .an-heroes { grid-template-columns: repeat(2,1fr); }
@@ -388,7 +339,6 @@
 @media (max-width: 768px) {
   .an-page     { padding: 20px 16px; }
   .an-heroes   { grid-template-columns: 1fr; }
-  .an-rates-grid { grid-template-columns: repeat(2,1fr); }
   .an-breadcrumb { font-size:16px; }
   .an-hero__value { font-size:22px; }
 }
@@ -410,6 +360,9 @@ body.theme-dark .an-hero__badge { background:rgba(79,70,229,0.15); color:#818CF8
 body.theme-dark .an-hero__label { color:#4B5563; }
 body.theme-dark .an-hero__value { color:#F1F5F9; }
 body.theme-dark .an-hero__sub   { color:#4B5563; }
+
+body.theme-dark .an-hero__sub--up   { color: #10B981; }
+body.theme-dark .an-hero__sub--down { color: #EF4444; }
 
 body.theme-dark .an-card { background:#161B2C; border-color:#1E2438; box-shadow:0 2px 12px rgba(0,0,0,0.3); }
 body.theme-dark .an-card-title { color:#E2E8F0; }
@@ -438,14 +391,6 @@ body.theme-dark .an-alloc-val  { color:#F1F5F9; }
 body.theme-dark .an-bud-cat    { color:#CBD5E1; }
 body.theme-dark .an-bud-pct    { color:#4B5563; }
 body.theme-dark .an-bud-track  { background:#1E2438; }
-
-body.theme-dark .an-rate-card { background:#131825; border-color:#1E2438; }
-body.theme-dark .an-rate-card:hover { border-color:#6366F1; }
-body.theme-dark .an-rate-card__code { color:#E2E8F0; }
-body.theme-dark .an-rate-card__name { color:#4B5563; }
-body.theme-dark .an-rate-card__val  { color:#F1F5F9; }
-body.theme-dark .an-rate-card__chg--up   { background:rgba(16,185,129,0.12); }
-body.theme-dark .an-rate-card__chg--down { background:rgba(239,68,68,0.12); }
 
 body.theme-dark .an-empty__title { color:#CBD5E1; }
 body.theme-dark .an-empty__sub   { color:#4B5563; }

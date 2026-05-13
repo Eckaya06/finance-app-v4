@@ -71,7 +71,7 @@ a { color: inherit; }
 .auth-hero p { opacity: .85; margin: 0; max-width: 28ch; }
 
 .background-hero{
-  background-image: url(/src/assets/login_background.webp);
+  background-image: url(/src/assets/login_background.png);
   background-size: cover;
   height: 70vh;
   background-position: 1%;

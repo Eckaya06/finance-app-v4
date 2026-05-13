@@ -1,12 +1,22 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-dotenv.config();
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: join(__dirname, '../.env'), override: true });
+console.log('Loaded sendEmail env from', join(__dirname, '../.env'));
 
 export const sendEmail = async (options) => {
   try {
     // Env değişkenlerini kontrol et
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('sendEmail env state:', {
+        EMAIL_USER: process.env.EMAIL_USER ? 'SET' : 'MISSING',
+        EMAIL_PASS: process.env.EMAIL_PASS ? 'SET' : 'MISSING',
+      });
       throw new Error('EMAIL_USER veya EMAIL_PASS .env dosyasında eksik');
     }
 

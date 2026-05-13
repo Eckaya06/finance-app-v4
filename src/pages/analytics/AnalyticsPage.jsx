@@ -19,7 +19,6 @@ const API_BASE = "https://api.frankfurter.dev/v1";
 const BASE     = "TRY";
 const ALL_CURR = ["USD","EUR","GBP","JPY","AUD","CAD","CHF"];
 const PALETTE  = ["#4F46E5","#10B981","#F59E0B","#EF4444","#3B82F6","#8B5CF6","#EC4899","#14B8A6"];
-const RANGE_DAYS  = { "1W":7,"1M":30,"3M":90,"1Y":365,"ALL":9999 };
 const PERIOD_DAYS = { weekly:7, monthly:30, yearly:365 };
 const CURR_META  = {
   USD:{ name:"US Dollar",        flag:"🇺🇸" },
@@ -116,10 +115,19 @@ export default function AnalyticsPage() {
   const [rates,       setRates]   = useState({});
   const [ratesLoading,setRL]      = useState(true);
   const [txStats,     setTx]      = useState(null);
-  const [range,       setRange]   = useState("1M");
   const [period,      setPeriod]  = useState("monthly");
   const [lastUpd,     setLastUpd] = useState(new Date());
   const [ready,       setReady]   = useState(false);
+  const [isDark,      setIsDark]  = useState(document.body.classList.contains("theme-dark"));
+
+  /* dark mod değişimini takip et */
+  useEffect(() => {
+    const obs = new MutationObserver(() =>
+      setIsDark(document.body.classList.contains("theme-dark"))
+    );
+    obs.observe(document.body, { attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
 
   const fetchRates = useCallback(async (signal) => {
     setRL(true);
@@ -158,9 +166,9 @@ export default function AnalyticsPage() {
 
   const cashflow = useMemo(()=>{
     if(!txStats) return [];
-    const days = Math.min(RANGE_DAYS[range]??30, PERIOD_DAYS[period]??30);
+    const days = PERIOD_DAYS[period] ?? 30;
     return txStats.cashflowSeries.slice(-days);
-  },[txStats, range, period]);
+  },[txStats, period]);
 
   const allocation = useMemo(()=>{
     const items=[];
@@ -250,13 +258,6 @@ export default function AnalyticsPage() {
               <h2 className="an-card-title">Cashflow Performance</h2>
               <p className="an-card-sub">Income vs expenses · {period.charAt(0).toUpperCase()+period.slice(1)}</p>
             </div>
-            <div className="an-range-tabs">
-              {Object.keys(RANGE_DAYS).map(r=>(
-                <button key={r} type="button"
-                  className={`an-range-tab${range===r?" an-range-tab--active":""}`}
-                  onClick={()=>setRange(r)}>{r}</button>
-              ))}
-            </div>
           </div>
 
           {cashflow.length===0 ? (
@@ -278,11 +279,11 @@ export default function AnalyticsPage() {
                     <stop offset="100%" stopColor="#EF4444" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="4 4" stroke="#F0F1F3" vertical={false}/>
-                <XAxis dataKey="label" tick={{fill:"#9CA3AF",fontSize:10,fontFamily:"inherit"}} axisLine={false} tickLine={false} interval="preserveStartEnd"/>
-                <YAxis tick={{fill:"#9CA3AF",fontSize:10,fontFamily:"inherit"}} axisLine={false} tickLine={false} tickFormatter={v=>v>=1000?`₺${(v/1000).toFixed(0)}k`:`₺${v}`} width={58}/>
-                <Tooltip content={<ChartTooltip/>} cursor={{stroke:"#E5E7EB",strokeWidth:1,strokeDasharray:"4 4"}}/>
-                <ReferenceLine y={0} stroke="#E5E7EB" strokeWidth={1}/>
+                <CartesianGrid strokeDasharray="4 4" stroke={isDark?"#1E2438":"#F0F1F3"} vertical={false}/>
+                <XAxis dataKey="label" tick={{fill:isDark?"#4B5563":"#9CA3AF",fontSize:10,fontFamily:"inherit"}} axisLine={false} tickLine={false} interval="preserveStartEnd"/>
+                <YAxis tick={{fill:isDark?"#4B5563":"#9CA3AF",fontSize:10,fontFamily:"inherit"}} axisLine={false} tickLine={false} tickFormatter={v=>v>=1000?`₺${(v/1000).toFixed(0)}k`:`₺${v}`} width={58}/>
+                <Tooltip content={<ChartTooltip/>} cursor={{stroke:isDark?"#2A2F45":"#E5E7EB",strokeWidth:1,strokeDasharray:"4 4"}}/>
+                <ReferenceLine y={0} stroke={isDark?"#2A2F45":"#E5E7EB"} strokeWidth={1}/>
                 <Area type="monotone" dataKey="income"  name="Income"   stroke="#4F46E5" strokeWidth={2.5} fill="url(#gI)" dot={false} activeDot={{r:5,fill:"#4F46E5",strokeWidth:2,stroke:"#fff"}}/>
                 <Area type="monotone" dataKey="expense" name="Expenses" stroke="#EF4444" strokeWidth={2.5} fill="url(#gE)" dot={false} activeDot={{r:5,fill:"#EF4444",strokeWidth:2,stroke:"#fff"}}/>
               </AreaChart>
@@ -360,46 +361,6 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* ═══ LIVE RATES STRIP ═══ */}
-      <div className="an-card an-card--rates">
-        <div className="an-card-head">
-          <div>
-            <h2 className="an-card-title">Live Market Rates</h2>
-            <p className="an-card-sub">{ratesLoading?"Fetching live data…":`Base: TRY · ${Object.keys(rates).length} currency pairs`}</p>
-          </div>
-        </div>
-        <div className="an-rates-grid">
-          {ALL_CURR.map(cur=>{
-            const rate=rates[cur];
-            const spark=SPARKS[cur]||[];
-            const meta=CURR_META[cur];
-            const last=spark[spark.length-1]??0;
-            const prev=spark[spark.length-2]??last;
-            const chg=prev>0?((last-prev)/prev)*100:0;
-            const up=chg>=0;
-            return (
-              <div key={cur} className="an-rate-card">
-                <div className="an-rate-card__top">
-                  <span className="an-rate-card__flag">{meta?.flag}</span>
-                  <div>
-                    <p className="an-rate-card__code">{cur}</p>
-                    <p className="an-rate-card__name">{meta?.name}</p>
-                  </div>
-                  <span className={`an-rate-card__chg${up?" an-rate-card__chg--up":" an-rate-card__chg--down"}`}>
-                    {up?"+":""}{chg.toFixed(2)}%
-                  </span>
-                </div>
-                <div className="an-rate-card__bot">
-                  <span className="an-rate-card__val">
-                    {rate!=null?`₺${rate.toFixed(4)}`:ratesLoading?"…":"—"}
-                  </span>
-                  <MiniSparkline data={spark} color={up?"#10B981":"#EF4444"} width={72} height={28}/>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
     </div>
   );

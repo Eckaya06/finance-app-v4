@@ -1,0 +1,182 @@
+/* ══════════════════════════════════════════════════
+   darkmode.css
+   globals.css'teki dark renk değerlerine göre
+   import './darkmode.css' → main.jsx veya App.jsx
+══════════════════════════════════════════════════ */
+
+/* ── Genel ── */
+body.theme-dark {
+  background: #1F2128;
+  color: #ffffff;
+}
+
+/* ── Tüm beyaz kart benzeri elementler ── */
+body.theme-dark [class*="card"],
+body.theme-dark [class*="-card"],
+body.theme-dark [class*="Card"],
+body.theme-dark [class*="section"],
+body.theme-dark [class*="Section"],
+body.theme-dark [class*="container"],
+body.theme-dark [class*="Container"] {
+  background: #2A2D35 !important;
+  border-color: #3A3D45 !important;
+  color: #ffffff !important;
+}
+
+/* ── StatCard ── */
+body.theme-dark [class*="stat"] {
+  background: #2A2D35 !important;
+  border-color: #3A3D45 !important;
+}
+body.theme-dark [class*="stat"] * {
+  color: #ffffff !important;
+}
+/* Primary (Current Balance) biraz daha koyu */
+body.theme-dark [class*="primary"],
+body.theme-dark [class*="balance"] {
+  background: #1E293B !important;
+}
+
+/* ── Tüm yazılar ── */
+body.theme-dark h1,
+body.theme-dark h2,
+body.theme-dark h3,
+body.theme-dark h4 {
+  color: #ffffff !important;
+}
+
+body.theme-dark p,
+body.theme-dark span,
+body.theme-dark small,
+body.theme-dark label {
+  color: #9B9CA3;
+}
+
+/* Tutarlar / bold yazılar beyaz kalsın */
+body.theme-dark [class*="amount"],
+body.theme-dark [class*="Amount"],
+body.theme-dark [class*="price"],
+body.theme-dark [class*="value"],
+body.theme-dark strong,
+body.theme-dark b {
+  color: #ffffff !important;
+}
+
+/* Income yeşil, expense normal */
+body.theme-dark [class*="income"]:not([class*="card"]):not([class*="section"]) {
+  color: #10B981 !important;
+}
+
+/* ── Pot item'lar ── */
+body.theme-dark [class*="pot-item"],
+body.theme-dark [class*="pot-row"],
+body.theme-dark [class*="pots-item"] {
+  background: #3B4A5A !important;
+  border-color: #3A3D45 !important;
+}
+
+/* ── Transaction satırları ── */
+body.theme-dark [class*="tx-row"],
+body.theme-dark [class*="transaction-item"],
+body.theme-dark [class*="list-item"],
+body.theme-dark [class*="ie-list-item"] {
+  border-bottom-color: #2A2D35 !important;
+}
+body.theme-dark [class*="tx-row"]:hover,
+body.theme-dark [class*="transaction-item"]:hover,
+body.theme-dark [class*="list-item"]:hover,
+body.theme-dark [class*="ie-list-item"]:hover {
+  background: #2A2D35 !important;
+}
+
+/* ── Table head ── */
+body.theme-dark [class*="table-head"],
+body.theme-dark [class*="thead"] {
+  background: #1F2128 !important;
+  border-color: #2A2D35 !important;
+}
+
+/* ── Links & "See Details" / "View All" ── */
+body.theme-dark a,
+body.theme-dark [class*="view-all"],
+body.theme-dark [class*="see-all"],
+body.theme-dark [class*="see-details"],
+body.theme-dark [class*="link"] {
+  color: #818CF8 !important;
+}
+
+/* ── Input / Select / Textarea ── */
+body.theme-dark input,
+body.theme-dark select,
+body.theme-dark textarea {
+  background: #2A2D35 !important;
+  border-color: #3A3D45 !important;
+  color: #ffffff !important;
+}
+body.theme-dark input::placeholder,
+body.theme-dark textarea::placeholder {
+  color: #6B6D73 !important;
+}
+body.theme-dark input:focus,
+body.theme-dark select:focus,
+body.theme-dark textarea:focus {
+  border-color: #6366F1 !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12) !important;
+}
+
+/* ── Sidebar ── */
+body.theme-dark aside,
+body.theme-dark [class*="sidebar"],
+body.theme-dark [class*="Sidebar"] {
+  background: #2D3342 !important;
+  border-color: #3A3D45 !important;
+}
+body.theme-dark [class*="sidebar"] span,
+body.theme-dark [class*="sidebar"] p {
+  color: #9B9CA3 !important;
+}
+body.theme-dark [class*="sidebar"] [class*="active"],
+body.theme-dark [class*="sidebar"] [aria-current="page"] {
+  background: #2A2D35 !important;
+  color: #ffffff !important;
+}
+
+/* ── Butonlar ── */
+body.theme-dark button:not([class*="primary"]):not([class*="active"]):not(.toggle):not([class*="delete"]):not([class*="metal"]) {
+  color: #9B9CA3;
+}
+
+/* ── Scrollbar ── */
+body.theme-dark ::-webkit-scrollbar { width: 6px; background: #1F2128; }
+body.theme-dark ::-webkit-scrollbar-thumb { background: #3A3D45; border-radius: 3px; }
+
+/* ── Settings sayfası ── */
+body.theme-dark .settings-page { background: #1F2128; }
+body.theme-dark .settings-topbar { border-bottom-color: #2A2D35; }
+body.theme-dark .settings-topbar h1 { color: #ffffff; }
+body.theme-dark .settings-topbar__eyebrow { color: #6B6D73; }
+body.theme-dark .settings-section { background: #2A2D35 !important; border-color: #3A3D45 !important; }
+body.theme-dark .settings-grid { background: transparent; }
+body.theme-dark .section-header { border-bottom-color: #3A3D45; }
+body.theme-dark .settings-save-bar { background: #2D3342; border-top-color: #3A3D45; }
+
+/* ── Transactions sayfası ── */
+body.theme-dark .tx-page { background: #1F2128; }
+body.theme-dark .tx-card { background: #2A2D35 !important; border-color: #3A3D45 !important; }
+body.theme-dark .tx-table-head { background: #1F2128 !important; border-color: #3A3D45 !important; }
+body.theme-dark .tx-name { color: #ffffff !important; }
+body.theme-dark .tx-category, body.theme-dark .tx-date { color: #9B9CA3 !important; }
+body.theme-dark .tx-amount--expense { color: #ffffff !important; }
+
+/* ── Income & Expense sayfası ── */
+body.theme-dark .ie-page { background: #1F2128; }
+body.theme-dark .ie-summary-card { background: #2A2D35 !important; border-color: #3A3D45 !important; }
+body.theme-dark .ie-transactions-container { background: #2A2D35 !important; border-color: #3A3D45 !important; }
+body.theme-dark .ie-item-name { color: #ffffff !important; }
+body.theme-dark .ie-item-amount.expense { color: #ffffff !important; }
+
+/* ── Home sayfası ── */
+body.theme-dark .home-page { background: #1F2128; }
+body.theme-dark .home-header { border-bottom-color: #2A2D35; }
+body.theme-dark .home-header__eyebrow { color: #6B6D73; }
+body.theme-dark .home-header__title { color: #ffffff; }

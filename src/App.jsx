@@ -13,6 +13,7 @@ import SettingsPage from './pages/settings/SettingsPage.jsx';
 import AnalyticsPage from './pages/analytics/AnalyticsPage.jsx';
 import ExchangePage from "./pages/Exchange/ExchangePage.jsx";
 
+
 // UI Bileşenleri
 import AiChatSystem from './components/chatbot/AiChatSystem.jsx';
 

@@ -66,3 +66,121 @@
 .form-submit-btn:hover {
   background-color: #383838;
 }
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .edit-pot-form h2 {
+  color: #F1F5F9;
+}
+
+body.theme-dark .edit-pot-form p {
+  color: #6B7280;
+}
+
+body.theme-dark .form-group label {
+  color: #9CA3AF;
+}
+
+body.theme-dark .form-input {
+  background-color: #1A1E2E;
+  border-color: #2A2F45;
+  color: #E2E8F0;
+}
+
+body.theme-dark .form-input:focus {
+  border-color: #6366F1;
+}
+
+body.theme-dark .form-input::placeholder {
+  color: #4B5563;
+}
+
+body.theme-dark .form-submit-btn {
+  background-color: #6366F1;
+}
+
+body.theme-dark .form-submit-btn:hover {
+  background-color: #4F46E5;
+}
+
+/* ── Theme Select Dropdown (EditPotForm & AddPotForm) ── */
+.pot-theme-select-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  color: #201F24;
+  text-align: left;
+  font-family: inherit;
+}
+
+.pot-theme-placeholder { color: #9ca3af; }
+
+.pot-theme-arrow {
+  font-size: 11px;
+  color: #6b7280;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.pot-theme-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 100;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.pot-theme-option {
+  padding: 9px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #201F24;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* DARK MODE — Theme dropdown */
+body.theme-dark .pot-theme-select-btn {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+  color: #E2E8F0 !important;
+}
+
+body.theme-dark .pot-theme-placeholder { color: #4B5563 !important; }
+body.theme-dark .pot-theme-arrow { color: #4B5563 !important; }
+
+body.theme-dark .pot-theme-list {
+  background: #1A1E2E !important;
+  border-color: #2A2F45 !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+}
+
+body.theme-dark .pot-theme-option {
+  color: #CBD5E1 !important;
+}
+
+/* ── AddPotForm dark mode ── */
+body.theme-dark .add-pot-form-title { color: #F1F5F9; }
+body.theme-dark .add-pot-form-desc  { color: #6B7280; }
+body.theme-dark .add-pot-form-label { color: #9CA3AF; }
+
+body.theme-dark .add-pot-submit-btn {
+  background: #6366F1 !important;
+}
+body.theme-dark .add-pot-submit-btn:hover {
+  background: #4F46E5 !important;
+}

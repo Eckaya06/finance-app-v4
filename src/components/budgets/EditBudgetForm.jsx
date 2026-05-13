@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
+// src/components/budgets/EditBudgetForm.jsx
+import { useState } from 'react';
 import './EditBudgetForm.css';
 
 const themeOptions = [
@@ -12,146 +13,138 @@ const themeOptions = [
 ];
 
 const categoryOptions = [
-  "Entertainment", "Bills", "Groceries", "Dining Out", "Transportation", 
+  "Entertainment", "Bills", "Groceries", "Dining Out", "Transportation",
   "Personal Care", "Education", "Lifestyle", "Shopping", "General"
 ];
+
+const sd = {
+  wrap: { position: 'relative' },
+  btn: {
+    width: '100%', display: 'flex', alignItems: 'center',
+    justifyContent: 'space-between', padding: '10px 14px',
+    fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '8px',
+    background: '#fff', cursor: 'pointer', color: '#201F24', textAlign: 'left',
+  },
+  placeholder: { color: '#9ca3af' },
+  arrow: { fontSize: '11px', color: '#6b7280', flexShrink: 0, transition: 'transform 0.2s' },
+  list: {
+    position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0,
+    background: '#fff', border: '1px solid #d1d5db', borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.1)', zIndex: 100,
+    listStyle: 'none', margin: 0, padding: '4px 0',
+    maxHeight: '200px', overflowY: 'auto',
+  },
+  option: {
+    padding: '9px 14px', fontSize: '14px', cursor: 'pointer',
+    color: '#201F24', display: 'flex', alignItems: 'center', gap: '10px',
+  },
+  swatch: { width: '14px', height: '14px', borderRadius: '50%', flexShrink: 0 },
+};
 
 const EditBudgetForm = ({ budget, onUpdateBudget, onClose }) => {
   const [category, setCategory] = useState(budget?.category || '');
   const [limit, setLimit] = useState(budget?.limit || budget?.maxSpend || '');
   const [theme, setTheme] = useState(budget?.theme || null);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
-  // Dropdown'ların açık/kapalı durumları
-  const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
-  const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
-
-  // Form gönderimi
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!category || !limit || parseFloat(limit) <= 0 || !theme) {
       alert("Please fill in all fields with valid values.");
       return;
     }
-    
-    onUpdateBudget(budget.id, { 
-      category, 
-      limit: parseFloat(limit), 
-      theme 
-    });
+    onUpdateBudget(budget.id, { category, limit: parseFloat(limit), theme });
   };
 
-  const selectedThemeObject = themeOptions.find(opt => opt.value === theme);
+  const selectedTheme = themeOptions.find(o => o.value === theme);
 
   return (
     <form onSubmit={handleSubmit} className="edit-budget-form">
       <h2>Edit Budget</h2>
       <p>Update the category, maximum spend, or theme for this budget.</p>
-      
-      {/* KATEGORİ SEÇİMİ (AÇILIR MENÜ) */}
+
+      {/* Budget Category */}
       <div className="form-group">
         <label>Budget Category</label>
-        <div className="custom-select-container">
-          <button 
-            type="button" 
-            className="select-selected-value" 
-            onClick={() => {
-              setIsCategoryDropdownOpen(!isCategoryDropdownOpen);
-              setIsThemeDropdownOpen(false); // Diğerini kapat
-            }}
+        <div style={sd.wrap}>
+          <button
+            type="button"
+            style={sd.btn}
+            onClick={() => { setIsCategoryOpen(!isCategoryOpen); setIsThemeOpen(false); }}
           >
-            {category ? (
-              <span className="selected-label-text">{category}</span>
-            ) : (
-              <span className="select-placeholder">Choose a category</span>
-            )}
-            <span className={`select-arrow ${isCategoryDropdownOpen ? 'open' : ''}`}>▼</span>
+            <span style={!category ? sd.placeholder : {}}>{category || 'Choose a category'}</span>
+            <span style={{ ...sd.arrow, transform: isCategoryOpen ? 'rotate(180deg)' : 'none' }}>▼</span>
           </button>
-
-          {isCategoryDropdownOpen && (
-            <ul className="select-options">
-              {categoryOptions.map(option => (
-                <li 
-                  key={option} 
-                  className="select-option"
-                  onClick={() => {
-                    setCategory(option);
-                    setIsCategoryDropdownOpen(false);
-                  }}
+          {isCategoryOpen && (
+            <ul style={sd.list}>
+              {categoryOptions.map(opt => (
+                <li
+                  key={opt}
+                  style={sd.option}
+                  onClick={() => { setCategory(opt); setIsCategoryOpen(false); }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  {option}
+                  {opt}
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-      
-      {/* LİMİT SEÇİMİ */}
+
+      {/* Maximum Spend */}
       <div className="form-group">
         <label>Maximum Spend</label>
-        <input 
-          type="number" 
+        <input
+          type="number"
           value={limit}
-          onChange={(e) => setLimit(e.target.value)}
+          onChange={e => setLimit(e.target.value)}
           placeholder="e.g., 2000"
           className="form-input"
         />
       </div>
 
-      {/* TEMA SEÇİMİ (AÇILIR MENÜ - AddPotForm Mantığı) */}
+      {/* Theme */}
       <div className="form-group">
         <label>Theme</label>
-        <div className="custom-select-container">
-          <button 
-            type="button" 
-            className="select-selected-value" 
-            onClick={() => {
-              setIsThemeDropdownOpen(!isThemeDropdownOpen);
-              setIsCategoryDropdownOpen(false); // Diğerini kapat
-            }}
+        <div style={sd.wrap}>
+          <button
+            type="button"
+            style={sd.btn}
+            onClick={() => { setIsThemeOpen(!isThemeOpen); setIsCategoryOpen(false); }}
           >
-            {selectedThemeObject ? (
-              <div className="theme-option-display">
-                <span 
-                  className="theme-color-swatch" 
-                  style={{ backgroundColor: selectedThemeObject.color }}
-                ></span>
-                <span className="selected-label-text">{selectedThemeObject.label}</span>
+            {selectedTheme ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span style={{ ...sd.swatch, backgroundColor: selectedTheme.color }} />
+                <span>{selectedTheme.label}</span>
               </div>
             ) : (
-              <span className="select-placeholder">Choose a theme</span>
+              <span style={sd.placeholder}>Choose a theme</span>
             )}
-            <span className={`select-arrow ${isThemeDropdownOpen ? 'open' : ''}`}>▼</span>
+            <span style={{ ...sd.arrow, transform: isThemeOpen ? 'rotate(180deg)' : 'none' }}>▼</span>
           </button>
-
-          {isThemeDropdownOpen && (
-            <ul className="select-options">
-              {themeOptions.map(option => (
-                <li 
-                  key={option.value} 
-                  className="select-option"
-                  onClick={() => {
-                    setTheme(option.value);
-                    setIsThemeDropdownOpen(false);
-                  }}
+          {isThemeOpen && (
+            <ul style={sd.list}>
+              {themeOptions.map(opt => (
+                <li
+                  key={opt.value}
+                  style={sd.option}
+                  onClick={() => { setTheme(opt.value); setIsThemeOpen(false); }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  <div className="theme-option-display">
-                    <span 
-                      className="theme-color-swatch" 
-                      style={{ backgroundColor: option.color }}
-                    ></span>
-                    {option.label}
-                  </div>
+                  <span style={{ ...sd.swatch, backgroundColor: opt.color }} />
+                  {opt.label}
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
-      
-      <button type="submit" className="form-submit-btn">
-        Save Changes
-      </button>
+
+      <button type="submit" className="form-submit-btn">Save Changes</button>
     </form>
   );
 };

@@ -71,3 +71,19 @@
 .bill-item--due {
   border-left-color: #60a5fa; /* Mavi rengi */
 }
+/* ════════════ DARK MODE ════════════ */
+body.theme-dark .card-container {
+  background-color: #2A2D35;
+  border-color: #3A3D45;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+body.theme-dark .card-header h2   { color: #ffffff; }
+body.theme-dark .see-details-link { color: #818CF8; }
+
+body.theme-dark .bill-item {
+  background-color: #1F2128;
+}
+
+body.theme-dark .bill-name   { color: #E5E7EB; }
+body.theme-dark .bill-amount { color: #ffffff; }
